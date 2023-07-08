@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: oscar
+apellido: alonso
 ---
 Ejercicio: entrada_salida_07
 ---
@@ -50,16 +50,60 @@ class App(customtkinter.CTk):
         self.btn_dividir.grid(row=5, pady=10, columnspan=2, sticky="nsew")
 
     def btn_sumar_on_click(self):
-        pass
+        #entrada
+        operador_1 = self.txt_operador_a.get()
+        operador_2 = self.txt_operador_b.get()
+
+        #proceso
+        operador_1_int = int(operador_1)
+        operador_2_int = int(operador_2)
+        suma = operador_1_int + operador_2_int
+        mensaje = "el resultado de la suma es: " + str(suma)
+
+        #salida
+        alert(title="suma", message= mensaje)
 
     def btn_restar_on_click(self):
-        pass
+        #entrada
+        operador_1 = self.txt_operador_a.get()
+        operador_2 = self.txt_operador_b.get()
+
+        #proceso
+        operador_1_int = int(operador_1)
+        operador_2_int = int(operador_2)
+        resta = operador_1_int - operador_2_int
+        mensaje = "el resultado de la resta es: " + str(resta)
+
+        #salida
+        alert(title="resta", message=mensaje)
 
     def btn_multiplicar_on_click(self):
-        pass
+        #entrada
+        operador_1 = self.txt_operador_a.get()
+        operador_2 = self.txt_operador_b.get()
+        
+        #proceso
+        operador_1_int = int(operador_1)
+        operador_2_int = int(operador_2)
+        multiplicar = operador_1_int * operador_2_int
+        mensaje = "el resultado de la multiplicacion es: " + str(multiplicar)
+
+        #salida 
+        alert(title="multiplicación", message=mensaje)
 
     def btn_dividir_on_click(self):
-        pass
+        #entrada
+        operador_1 = self.txt_operador_a.get()
+        operador_2 = self.txt_operador_b.get()
+
+        #proceso
+        operador_1_flt = float(operador_1)
+        operador_2_flt = float(operador_2)
+        division = operador_1_flt / operador_2_flt
+        mensaje = f"el resultado de la división es: {division:.2f}"
+
+        #salida
+        alert(title="division", message=mensaje)
         
 if __name__ == "__main__":
     app = App()
