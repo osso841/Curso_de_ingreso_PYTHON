@@ -28,7 +28,12 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        #entrada
+        dato = prompt(title="entrada", prompt="ingrese un dato")
+
+        #salida
+        alert(title="salida", message=dato)
+
         
         
     
