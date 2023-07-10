@@ -51,6 +51,7 @@ class App(customtkinter.CTk):
         edad_int = int(edad)
 
         #consulta de habilitacion para votar
+        '''
         if tipo_nacionalidad == "NATIVO":
             if edad_int > 15:
                 mensaje = "puede votar"
@@ -64,6 +65,16 @@ class App(customtkinter.CTk):
 
         #salida
         alert(title="estado", message=mensaje)
+        '''
+
+        if edad_int > 17 or (edad_int > 15 and tipo_nacionalidad == "NATIVO"):
+            mensaje = "puede votar"
+        else:
+            mensaje = "no puede votar"
+        
+        #salida
+        alert(title="estado", message=mensaje)
+
 
 
         

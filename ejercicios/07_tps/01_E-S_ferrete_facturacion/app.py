@@ -9,7 +9,7 @@ Enunciado:
 Para el departamento de facturación:
     A.	Ingresar tres precios de productos y mostrar la suma de los mismos.
     B.	Ingresar tres precios de productos y mostrar el promedio de los mismos.
-	C.	ingresar tres precios de productos sumarlos y mostrar precio final (más IVA 21%).
+	C.	ingresar tres precios de productos, sumarlos y mostrar precio final (más IVA 21%).
 '''
 
 class App(customtkinter.CTk):
@@ -48,13 +48,68 @@ class App(customtkinter.CTk):
         self.btn_total_iva.grid(row=5, pady=10, columnspan=2, sticky="nsew")
 
     def btn_total_on_click(self):
-        pass
+        #Ingresar tres precios de productos y mostrar la suma de los mismos.
+
+        #declaracion
+
+        #entrada
+        precio_uno = self.txt_importe_1.get()
+        precio_dos = self.txt_importe_2.get()
+        precio_tres = self.txt_importe_3.get()
+
+        precio_uno = float(precio_uno)
+        precio_dos = float(precio_dos)
+        precio_tres = float(precio_tres)
+
+        #proceso
+        suma = precio_uno + precio_dos + precio_tres
+
+        #salida
+        alert(title="resultado", message=suma)
 
     def btn_promedio_on_click(self):
-        pass
+        #declaracion
+        CANTIDAD_PRODUCTOS = 3
+
+        #entrada
+        precio_uno = self.txt_importe_1.get()
+        precio_dos = self.txt_importe_2.get()
+        precio_tres = self.txt_importe_3.get()
+
+        precio_uno = float(precio_uno)
+        precio_dos = float(precio_dos)
+        precio_tres = float(precio_tres)
+
+        #proceso
+        suma = precio_uno + precio_dos + precio_tres
+        promedio = suma / CANTIDAD_PRODUCTOS
+
+        #salida
+        alert(title="resultado", message="{0:.2f}".format(promedio))
+
 
     def btn_total_iva_on_click(self):
-        pass      
+        #declaracion
+        IVA = 21
+        
+        #entrada
+        precio_uno = self.txt_importe_1.get()
+        precio_dos = self.txt_importe_2.get()
+        precio_tres = self.txt_importe_3.get()
+
+        precio_uno = float(precio_uno)
+        precio_dos = float(precio_dos)
+        precio_tres = float(precio_tres)
+
+        #proceso
+        costo_total = precio_uno + precio_dos + precio_tres
+        adicional_iva = costo_total * IVA / 100
+        valor_total = costo_total + adicional_iva
+
+        #salida
+        alert(title="valor total con iva", message="el costo total es {0:.2f} y con iva sera {1:.2f}".format(costo_total, valor_total))
+
+
     
 if __name__ == "__main__":
     app = App()
