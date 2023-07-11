@@ -63,8 +63,67 @@ class App(customtkinter.CTk):
         self.btn_calcular.grid(row=3, pady=10, columnspan=2, sticky="nsew")
 
     def btn_calcular_on_click(self):
+        #entrada
+        largo = self.txt_largo.get()
+        ancho = self.txt_ancho.get()
+
+        #parseo de variables
+        largo_float = float(largo)
+        ancho_float = float(ancho)
+
+
         # A. Informar los metros cuadrados del terreno y los metros lineales del perimetro
-        pass
+        #calculo de perimetro
+        perimetro_total = (largo_float + ancho_float)*2
+
+        #calculo area total en m2
+        area_total = largo_float * ancho_float
+
+        print("El area total sera de: {0} m2, y el perimetro total sera de {1} m.".format(area_total, perimetro_total)) 
+
+        # B. Informar la cantidad de postes de quebracho Grueso de 2.4 mts (van cada 250 mts lineales y en las esquinas).
+
+        poste_quebracho_grueso = 4
+        poste_quebracho_grueso_largo = largo_float // 250 
+        poste_quebracho_grueso_ancho = ancho_float // 250 
+        
+        cantidad_postes_quebracho_grueso = poste_quebracho_grueso + (poste_quebracho_grueso_largo + poste_quebracho_grueso_ancho) * 2
+
+        print ("la cantidad de postes de quebracho a utilizar es: {0}.".format(cantidad_postes_quebracho_grueso))
+
+        # C. Informar la cantidad de postes de quebracho Fino de 2.2 mts (van cada 12 mts lineales, si en ese lugar no se encuentra el poste grueso).
+
+        #calculo de espacio disponible
+        largo_disponible = largo_float - (poste_quebracho_grueso_largo - poste_quebracho_grueso / 2) * 2.4
+        ancho_disponible = ancho_float - (poste_quebracho_grueso_ancho - poste_quebracho_grueso / 2) * 2.4
+
+        #cantidad de postes a utilizar
+        poste_quebracho_fino_largo = largo_disponible // 12
+        poste_quebracho_fino_ancho = ancho_disponible // 12
+
+        cantidad_postes_quebracho_fino = (poste_quebracho_fino_largo + poste_quebracho_fino_ancho) * 2
+
+        print("la cantidad de postes de quebracho fino utilizado es {0}".format(cantidad_postes_quebracho_fino))
+
+        # D. Informar la cantidad de varillas (van cada 2 mts lineales).
+
+        largo_disponible_total = largo_disponible - poste_quebracho_fino_largo * 2.2
+        ancho_disponible_total = ancho_disponible - poste_quebracho_fino_ancho * 2.2
+
+        cantidad_varillas_largo = largo_disponible_total // 2
+        cantidad_varillas_ancho = ancho_disponible_total // 2
+
+        cantidad_varillas_total = (cantidad_varillas_ancho + cantidad_varillas_largo) * 2
+
+        print("la cantidad de varillas a utilizar son: {0}".format(cantidad_varillas_total))
+
+        # E. Informar la cantidad de alambre alta resistencia 17/15 considerando 7 hilos
+
+        Cantidad_alambre = perimetro_total * 7
+
+        print("la cantidad de alambre a utilizar es {0}m".format(Cantidad_alambre))
+
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
