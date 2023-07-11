@@ -54,9 +54,11 @@ class App(customtkinter.CTk):
         operador_1 = self.txt_operador_a.get()
         operador_2 = self.txt_operador_b.get()
 
-        #proceso
+        #parseo valores de entrada
         operador_1_int = int(operador_1)
         operador_2_int = int(operador_2)
+
+        #proceso
         suma = operador_1_int + operador_2_int
         mensaje = "el resultado de la suma es: " + str(suma)
 
@@ -67,10 +69,12 @@ class App(customtkinter.CTk):
         #entrada
         operador_1 = self.txt_operador_a.get()
         operador_2 = self.txt_operador_b.get()
-
-        #proceso
+        
+        #parseo valores de entrada
         operador_1_int = int(operador_1)
         operador_2_int = int(operador_2)
+
+        #proceso
         resta = operador_1_int - operador_2_int
         mensaje = "el resultado de la resta es: " + str(resta)
 
@@ -81,10 +85,12 @@ class App(customtkinter.CTk):
         #entrada
         operador_1 = self.txt_operador_a.get()
         operador_2 = self.txt_operador_b.get()
-        
-        #proceso
+
+         #parseo valores de entrada  
         operador_1_int = int(operador_1)
         operador_2_int = int(operador_2)
+
+        #proceso
         multiplicar = operador_1_int * operador_2_int
         mensaje = "el resultado de la multiplicacion es: " + str(multiplicar)
 
@@ -96,9 +102,11 @@ class App(customtkinter.CTk):
         operador_1 = self.txt_operador_a.get()
         operador_2 = self.txt_operador_b.get()
 
-        #proceso
+        #parseo valores de entrada
         operador_1_flt = float(operador_1)
         operador_2_flt = float(operador_2)
+
+        #proceso
         division = operador_1_flt / operador_2_flt
         mensaje = f"el resultado de la división es: {division:.2f}"
 

@@ -45,9 +45,11 @@ class App(customtkinter.CTk):
         operador_1 = self.txt_operador_a.get()
         operador_2 = self.txt_operador_b.get()
 
-        #proceso
+        #parseo valores entrada
         operador_1_int = int(operador_1)
         operador_2_int = int(operador_2)
+
+        #proceso
         suma = operador_1_int + operador_2_int
         mensaje = "el resultado de las sumas es: " + str(suma)
 

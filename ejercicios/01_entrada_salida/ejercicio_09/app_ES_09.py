@@ -44,7 +44,7 @@ class App(customtkinter.CTk):
         dato_sueldo = self.txt_sueldo.get()
         dato_incremento = self.txt_incremento.get()
 
-        #parseo de variables
+        #parseo de valores de entrada
         dato_sueldo_int = float(dato_sueldo)
         dato_incremento_int = float(dato_incremento) 
 
@@ -53,7 +53,7 @@ class App(customtkinter.CTk):
         sueldo_actualizado = dato_sueldo_int + incremento
 
         #estructura mensaje salida
-        mensaje = "sueldo: {}. incremento {}. sueldo actualizado {}".format(dato_sueldo, dato_incremento, sueldo_actualizado)
+        mensaje = "sueldo: {0}. incremento {1}. sueldo actualizado {2}".format(dato_sueldo, dato_incremento, sueldo_actualizado)
 
         #salida Dialog Alert
         alert(title="info. sueldo", message=mensaje)

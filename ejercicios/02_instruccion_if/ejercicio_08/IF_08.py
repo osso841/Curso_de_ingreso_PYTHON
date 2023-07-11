@@ -42,6 +42,7 @@ class App(customtkinter.CTk):
 
     def btn_mostrar_on_click(self):
         #declaración
+        MAYOR_DE_EDAD = 18
         mostrar_mensaje = True
 
         #entrada
@@ -50,7 +51,7 @@ class App(customtkinter.CTk):
         edad_int = int(edad)
 
         #proceso
-        if edad_int > 17:
+        if edad_int >= MAYOR_DE_EDAD:
             mensaje = "es {0} y no es menor".format(estado_civil)
         elif estado_civil == "Soltero":
             mensaje = "es {0} y es menor".format(estado_civil)
@@ -59,7 +60,7 @@ class App(customtkinter.CTk):
 
         #salida
         if mostrar_mensaje:
-            alert(title="estado civil", message=mensaje)
+            alert(title="informacion", message=mensaje)
     
 if __name__ == "__main__":
     app = App()

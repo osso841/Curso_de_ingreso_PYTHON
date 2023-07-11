@@ -34,6 +34,8 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
+        #declaracion de variables
+        MAYOR_DE_EDAD = 18
         #entrada
         edad = self.txt_edad.get()
 
@@ -41,7 +43,7 @@ class App(customtkinter.CTk):
         edad_int = int(edad)
 
         #buscar coincidencia con 18 
-        if edad_int == 18:
+        if edad_int == MAYOR_DE_EDAD:
             mensaje = "usted tiene 18 años"
         else:
             mensaje = "usted no tiene 18 años"
