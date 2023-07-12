@@ -56,44 +56,58 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        #entrada
-        diametro_dc = prompt(title="diametro menor", prompt="ingrese el diametro menor DC")
-        lado_menor_bd_bc = prompt(title="medida lado menor", prompt="ingrese la medida del lado menor BD y BC")
-        lado_mayor_ad_ac = prompt(title="medida lado mayor", prompt="ingrese la medida del lado mayor AD y AC")
+        #adicional cola cometa
+        ADICIONAL_COLA_COMETA = 10 
+        CANTIDAD_COMETAS = 10
 
-        #insertar informacion
-        self.txt_diametro_menor.delete(first_index=0, last_index="end")
-        self.txt_diametro_menor.insert(index=0, string=diametro_dc)
+        #Entrada
+        diametro_menor = self.txt_diametro_menor.get()
+        lados_menores = self.txt_lados_menores.get()
+        lados_mayores = self.txt_lados_mayores.get()
 
-        self.txt_lados_menores.delete(first_index=0, last_index="end")
-        self.txt_lados_menores.insert(index=0, string=lado_menor_bd_bc)
+        #parseo de variables de entrada
+        diametro_menor = int(diametro_menor)
+        lados_mayores = int(lados_mayores)
+        lados_menores = int(lados_menores)
 
-        self.txt_lados_mayores.delete(first_index=0, last_index="end")
-        self.txt_lados_mayores.insert(index=0, string=lado_mayor_ad_ac)
+        #calculo perimetro
+        perimetro_cometa = (lados_menores + lados_mayores) * 2
 
-        #parsear datos
-        diametro_dc_int = int(diametro_dc)
-        lado_menor_bd_bc_int = int(lado_menor_bd_bc)
-        lado_mayor_ad_ac_int = int(lado_mayor_ad_ac)
+        #calculo de varillas entrecruce superior
+        #considerando diametro menor / 2 y lado bd y parte superior de varilla , se obtiene un triangulo rectangulo.
 
-        #calculos
-        perimetro = (lado_mayor_ad_ac_int +  lado_menor_bd_bc_int) * 2
+        #Calculo varilla vertical
+        varilla_vertical_superior = math.sqrt(pow(diametro_menor / 2, 2) + pow(lados_menores, 2))
+        varilla_vertical_inferior = math.sqrt(pow(diametro_menor / 2, 2) + pow(lados_mayores, 2))
 
-        #presentada en cm2 para representar el area del cometa
-        area_cometa=  lado_mayor_ad_ac_int * lado_menor_bd_bc_int
+        varilla_vertical = varilla_vertical_inferior + varilla_vertical_superior
 
-        cola_cometa_proporcion = area_cometa * 0.1
+        #cantidad total de varilla
+        cantidad_varillas_cometa_total = perimetro_cometa + varilla_vertical + diametro_menor
 
-        cantidad_tota_papel_cometa = area_cometa + cola_cometa_proporcion
+        #calculo del area de cometa
 
-        #popdemos usar pitagors
+        area_cometa_superior = diametro_menor * varilla_vertical_superior / 2
+        area_cometa_inferior = diametro_menor * varilla_vertical_inferior / 2
 
+        superficie_cometa = area_cometa_inferior + area_cometa_superior
 
+        # calculo de la cola del cometa
+        superficie_cola_cometa =  superficie_cometa * (1 + ADICIONAL_COLA_COMETA / 100)
 
+        # calculo de varillas para 10 cometas
+        varilla_total_por_cantidad = cantidad_varillas_cometa_total * CANTIDAD_COMETAS # salida Alert
 
+        # calculo de papel para 10 cometas
+        papel_por_cantidad = (superficie_cola_cometa + superficie_cometa) * CANTIDAD_COMETAS # salida Alert
 
-        # print("El perimetro es: {0} cm".format(perimetro))
-    
+        # Necesitamos saber cuántos Mts de varillas de plástico y cuántos de papel son necesarios para la construcción en masa de 10 cometas. Tener en cuenta que los valores de entrada están expresados en Cms.
+
+        mensaje = "para la fabricacion de {0:.2f} cometas en masa se debe contar con:\n {1:.2f} cm2 de papel de alta resistencia y\n {2:.2f} cm de varillas de platico".format(CANTIDAD_COMETAS, papel_por_cantidad, varilla_total_por_cantidad)
+
+        #salida
+        alert(title="materiales", message=mensaje)
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()
