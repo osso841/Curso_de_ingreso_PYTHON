@@ -38,61 +38,61 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        # declaraciones constantes
-        DESCUENTO_SEIS_UNIDADES = 50
-        IMPORTE_FINAL_CON_DESCUENTO_ADICIONAL = 4000
-        DESCUENTO_ADICIONAL = 5
-        COSTO_LAMPARAS = 800
-
-        # contantes Marcas
+        # declaracion constantes marcas
         ARGENTINALUZ = "ArgentinaLuz"
         FELIPELAMPARAS = "FelipeLamparas"
 
-        # declaraciones
+        #declaracion constantes
+        DESCUENTO_SEIS_UNIDADES = 50
+        DESCUENTO_ADICIONAL = 5
+        IMPORTE_FINAL_CON_DESCUENTO = 4000
+        COSTO_LAMPARAS = 800
+
+        #declaracion
         descuento = 0
-    
-        # entrada
+
+        #entrada
         marca = self.combobox_marca.get()
         cantidad = self.combobox_cantidad.get()
-        
-        # parseo de variables
+
+        #parseo de variables
         cantidad_int = int(cantidad)
 
-        #cantidad de lamparas para el descuento adicional
-        cantidad_lamparas_descuento_adicional = IMPORTE_FINAL_CON_DESCUENTO_ADICIONAL / (1 - DESCUENTO_SEIS_UNIDADES /100) / COSTO_LAMPARAS
+        #cantidad bombillas para descuento adicional
+        cantidad_lamparas_descuento = IMPORTE_FINAL_CON_DESCUENTO / (1 - DESCUENTO_SEIS_UNIDADES / 100) / COSTO_LAMPARAS
 
-        if cantidad_int >= 6:         # descuento Mayorista
+        if cantidad_int >= 6:           #descuento por 6 o mas uniadades
             descuento = DESCUENTO_SEIS_UNIDADES
-            if cantidad_int >= cantidad_lamparas_descuento_adicional: # calculo descuento adicional por cantidad
+            if cantidad_int >= cantidad_lamparas_descuento: #maximo descuento
                 descuento += DESCUENTO_ADICIONAL
-        elif marca == FELIPELAMPARAS: # calculo descuentos "FelipeLamparas"
-            if cantidad_int == 3:
-                descuento = 10
-            elif cantidad_int == 4:
-                descuento = 25
-            elif cantidad_int == 5:
-                descuento = 30
-        elif marca == ARGENTINALUZ:   # calculo descuentos "ArgentinaLuz"
-            if cantidad_int == 3:
-                descuento = 15
-            elif cantidad_int == 4:
-                descuento = 25
-            elif cantidad_int == 5:
+        elif cantidad_int == 5:         #descuento por 5 unidades
+            if marca == ARGENTINALUZ:
                 descuento = 40
-        else:                        # calculo descuentos estandar
-            if cantidad_int == 3:
-                descuento = 5
-            elif cantidad_int == 4:
-                descuento = 20
-            elif cantidad_int == 5:
+            else:
                 descuento = 30
+        elif cantidad_int == 4:             #descuento por 4 unidades
+            if marca == ARGENTINALUZ or marca == FELIPELAMPARAS:
+                descuento = 25
+            else:
+                descuento = 20
+        elif cantidad_int == 3:             #descuento por 3 unidades
+            if marca == ARGENTINALUZ:
+                descuento = 15
+            elif marca == FELIPELAMPARAS:
+                descuento = 10
+            else:
+                descuento = 5
 
-        costo_total_con_descuento = cantidad_int * COSTO_LAMPARAS * (1 - descuento / 100) #info Dialog alert
-        costo_total_sin_descuento = cantidad_int * COSTO_LAMPARAS #info Dialog alert
+        #valores salida dialog alert
+        valor_total_sin_descuento = cantidad_int * COSTO_LAMPARAS
+        valor_total_con_descuento = cantidad_int * COSTO_LAMPARAS * (1 - descuento / 100)
 
-        # salida
-        alert(title="costo total", message=" valor de lampara c/u = ${0} \n cantidad = {1} \n descuento aplicado = %{2}. \n total sin descuento: ${3}. \n total con descuento: ${4:.0f}. \n marca = {5}".format(COSTO_LAMPARAS, cantidad_int, descuento, costo_total_sin_descuento, costo_total_con_descuento, marca))
+        mensaje = "cantidad de lamparas {0}. \n descuento aplicado: %{1}, \n valor sin descuento: ${2} \n valor con descuento ${3:.0F}. \n marca: {4}".format(cantidad_int, descuento, valor_total_sin_descuento, valor_total_con_descuento, marca)
         
+        alert(title="salida", message=mensaje)
+            
+
+
     
 if __name__ == "__main__":
     app = App()

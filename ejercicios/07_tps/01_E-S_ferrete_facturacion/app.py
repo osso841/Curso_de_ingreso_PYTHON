@@ -57,6 +57,7 @@ class App(customtkinter.CTk):
         precio_dos = self.txt_importe_2.get()
         precio_tres = self.txt_importe_3.get()
 
+        #parseo de variables
         precio_uno = float(precio_uno)
         precio_dos = float(precio_dos)
         precio_tres = float(precio_tres)
@@ -68,6 +69,8 @@ class App(customtkinter.CTk):
         alert(title="resultado", message=suma)
 
     def btn_promedio_on_click(self):
+        # B.Ingresar tres precios de productos y mostrar el promedio de los mismos.
+
         #declaracion
         CANTIDAD_PRODUCTOS = 3
 
@@ -89,6 +92,8 @@ class App(customtkinter.CTk):
 
 
     def btn_total_iva_on_click(self):
+	    #C.ingresar tres precios de productos, sumarlos y mostrar precio final (más IVA 21%).
+
         #declaracion
         IVA = 21
         

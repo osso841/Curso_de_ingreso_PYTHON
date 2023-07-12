@@ -41,6 +41,12 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
+        # Enunciado:
+        # Al ingresar una edad menor a 18 años y un estado civil distinto a "Soltero", NO HACER NADA,
+        # pero si no es asi, y es soltero y no es menor, mostrar el siguiente mensaje: 'Es soltero y no
+        # es menor.'
+
+
         #declaración
         MAYOR_DE_EDAD = 18
         mostrar_mensaje = True
@@ -48,19 +54,27 @@ class App(customtkinter.CTk):
         #entrada
         edad = self.txt_edad.get()
         estado_civil = self.combobox_estado_civil.get()
+
+        # parseo de valor de entrada
         edad_int = int(edad)
 
-        #proceso
-        if edad_int >= MAYOR_DE_EDAD:
-            mensaje = "es {0} y no es menor".format(estado_civil)
-        elif estado_civil == "Soltero":
-            mensaje = "es {0} y es menor".format(estado_civil)
-        else:
-            mostrar_mensaje = False
+        if edad_int >= MAYOR_DE_EDAD and estado_civil == "Soltero":
+            alert(title="salida", message='Es soltero y no es menor.')
 
-        #salida
-        if mostrar_mensaje:
-            alert(title="informacion", message=mensaje)
+
+
+        # #proceso
+        # if edad_int >= MAYOR_DE_EDAD:
+        #     mensaje = "es {0} y no es menor".format(estado_civil)
+        # elif estado_civil == "Soltero":
+        #     mensaje = "es {0} y es menor".format(estado_civil)
+        # else:
+        #     mostrar_mensaje = False
+
+        # #salida
+        # if mostrar_mensaje:
+        #     alert(title="informacion", message=mensaje)
+    
     
 if __name__ == "__main__":
     app = App()
