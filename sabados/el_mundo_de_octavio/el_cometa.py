@@ -101,8 +101,6 @@ class App(customtkinter.CTk):
         # calculo de papel para 10 cometas
         papel_por_cantidad = (superficie_cola_cometa + superficie_cometa) * CANTIDAD_COMETAS # salida Alert
 
-        # Necesitamos saber cuántos Mts de varillas de plástico y cuántos de papel son necesarios para la construcción en masa de 10 cometas. Tener en cuenta que los valores de entrada están expresados en Cms.
-
         mensaje = "para la fabricacion de {0:.2f} cometas en masa se debe contar con:\n {1:.2f} cm2 de papel de alta resistencia y\n {2:.2f} cm de varillas de platico".format(CANTIDAD_COMETAS, papel_por_cantidad, varilla_total_por_cantidad)
 
         #salida

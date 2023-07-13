@@ -10,7 +10,7 @@ Enunciado:
 Al presionar el botón ‘Informar’ mostrar mediante alert los siguientes mensajes 
 en función del mes seleccionado:
     Si estamos en invierno: ‘¡Abrígate que hace frío!’
-    Si aún no llegó el invierno: ‘Falta para el invierno..’
+    Si aún no llegó el invierno: ‘’
     Si ya pasó el invierno: ‘¡Ya pasamos frío, ahora calor!’
 	
 Aclaracion: tomamos a Julio y Agosto como los meses de invierno
@@ -36,8 +36,20 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
+        
+        #entrada
+        meses = self.combobox_mes.get()
+
+        #proceso
+        match meses:
+            case "Enero" | "Febrero" | "Marzo" | "Abril" | "Mayo" | "Junio":
+                mensaje = "Falta para el invierno.."
+            case "Julio" | "Agosto":
+                mensaje = "¡Abrígate que hace frío!"
+            case "Septiembre" | "Octubre" | "Noviembre" | "Diciembre":
+                mensaje = "Ya pasamos frío, ahora calor!"
     
+        alert(title="mensaje", message=mensaje)
     
 if __name__ == "__main__":
     app = App()

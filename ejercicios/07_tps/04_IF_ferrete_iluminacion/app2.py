@@ -45,11 +45,12 @@ class App(customtkinter.CTk):
         #declaracion constantes
         DESCUENTO_SEIS_UNIDADES = 50
         DESCUENTO_ADICIONAL = 5
-        IMPORTE_FINAL_CON_DESCUENTO = 4000
         COSTO_LAMPARAS = 800
+        IMPORTE_FINAL_DESCUENTO= 4000
 
         #declaracion
         descuento = 0
+        costo_lampara_actualizado = 10000 # precio actualizado
 
         #entrada
         marca = self.combobox_marca.get()
@@ -58,42 +59,42 @@ class App(customtkinter.CTk):
         #parseo de variables
         cantidad_int = int(cantidad)
 
+        # calculo inflacionario y actualizacion de montos de descuento
+        importe_final_descuento_actualizado = costo_lampara_actualizado * IMPORTE_FINAL_DESCUENTO / COSTO_LAMPARAS
+
         #cantidad bombillas para descuento adicional
-        cantidad_lamparas_descuento = IMPORTE_FINAL_CON_DESCUENTO / (1 - DESCUENTO_SEIS_UNIDADES / 100) / COSTO_LAMPARAS
+        cantidad_lamparas_descuento = importe_final_descuento_actualizado / (1 - DESCUENTO_SEIS_UNIDADES / 100) / costo_lampara_actualizado
 
         if cantidad_int >= 6:           #descuento por 6 o mas uniadades
             descuento = DESCUENTO_SEIS_UNIDADES
             if cantidad_int >= cantidad_lamparas_descuento: #maximo descuento
-                descuento += DESCUENTO_ADICIONAL
-        elif cantidad_int == 5:         #descuento por 5 unidades
+                descuento = float(descuento)
+                descuento = DESCUENTO_SEIS_UNIDADES * (1 + DESCUENTO_ADICIONAL / 100)
+                print(descuento)
+        elif cantidad_int == 5: #descuento por 5 unidades
+            descuento = 30
             if marca == ARGENTINALUZ:
                 descuento = 40
-            else:
-                descuento = 30
-        elif cantidad_int == 4:             #descuento por 4 unidades
+        elif cantidad_int == 4: #descuento por 4 unidades
+            descuento = 20         
             if marca == ARGENTINALUZ or marca == FELIPELAMPARAS:
                 descuento = 25
-            else:
-                descuento = 20
         elif cantidad_int == 3:             #descuento por 3 unidades
+            descuento = 5
             if marca == ARGENTINALUZ:
                 descuento = 15
             elif marca == FELIPELAMPARAS:
                 descuento = 10
-            else:
-                descuento = 5
+                
 
         #valores salida dialog alert
-        valor_total_sin_descuento = cantidad_int * COSTO_LAMPARAS
-        valor_total_con_descuento = cantidad_int * COSTO_LAMPARAS * (1 - descuento / 100)
+        valor_total_sin_descuento = cantidad_int * costo_lampara_actualizado
+        valor_total_con_descuento = cantidad_int * costo_lampara_actualizado * (1 - descuento / 100)
 
         mensaje = "cantidad de lamparas {0}. \n descuento aplicado: %{1}, \n valor sin descuento: ${2} \n valor con descuento ${3:.0F}. \n marca: {4}".format(cantidad_int, descuento, valor_total_sin_descuento, valor_total_con_descuento, marca)
         
         alert(title="salida", message=mensaje)
             
-
-
-    
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
