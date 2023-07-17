@@ -43,31 +43,45 @@ class App(customtkinter.CTk):
     
     def btn_informar_on_click(self):
         #declaracion
-        mensaje = ""
+        # mensaje = ""
+        mensaje = "se viaja"
 
         #valores de entrada
         estaciones = self.combobox_estaciones.get()
         destinos = self.combobox_destino.get()
 
         #proceso
+        # match destinos:
+        #     case "Bariloche":
+        #         match estaciones:
+        #             case "Invierno" | "Otoño":
+        #                 mensaje = "se viaja"
+        #             case _:
+        #                 mensaje = "no se viaja"
+        #     case "Mar del plata" | "Cataratas":
+        #         match estaciones:
+        #             case "Verano" | "Otoño" | "Primavera":
+        #                 mensaje = "se viaja"
+        #             case _: 
+        #                 mensaje = "no se viaja"
+        #     case "Cordoba":
+        #         match estaciones:
+        #             case "Otoño" | "Primavera":
+        #                 mensaje = "se viaja"
+        #             case _:
+        #                 mensaje = "no se viaja"
         match destinos:
             case "Bariloche":
                 match estaciones:
-                    case "Invierno" | "Otoño":
-                        mensaje = "se viaja"
-                    case _:
+                    case "Verano" | "Primavera":
                         mensaje = "no se viaja"
             case "Mar del plata" | "Cataratas":
                 match estaciones:
-                    case "Verano" | "Otoño" | "Primavera":
-                        mensaje = "se viaja"
-                    case _: 
+                    case "Invierno":
                         mensaje = "no se viaja"
             case "Cordoba":
                 match estaciones:
-                    case "Otoño" | "Primavera":
-                        mensaje = "se viaja"
-                    case _:
+                    case "Verano" | "Invierno":
                         mensaje = "no se viaja"
 
         #salida

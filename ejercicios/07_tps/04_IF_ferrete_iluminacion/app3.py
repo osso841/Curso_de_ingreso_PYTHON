@@ -42,48 +42,52 @@ class App(customtkinter.CTk):
         DESCUENTO_MAXIMO_BASE = 4000
         PRECIO_BASE_LAMPARAS = 800
         DESCUENTO_ADICIONAL = 5
-        descuento = 0
         
         #entrada de variables
         marca = self.combobox_marca.get()
         cantidad = self.combobox_cantidad.get()
+
         #parseo de cantidad
         cantidad = int(cantidad) 
 
-        #descuento %50
-        if cantidad >= 6:
-            descuento = 50
-            # descuento adicional
-            valor_descuento_adicional = PRECIO_BASE_LAMPARAS * cantidad * (1 - descuento / 100) >= DESCUENTO_MAXIMO_BASE
-            print(valor_descuento_adicional)
-            if valor_descuento_adicional:
-                descuento += descuento * DESCUENTO_ADICIONAL / 100
-                print(descuento)
-        else:
-            match cantidad:
-                case 5:
-                    match marca:
-                        case "ArgentinaLuz":
-                            descuento = 40
-                        case _:
-                            descuento = 30
-                case 4:
-                    match marca:
-                        case "ArgentinaLuz" | "FelipeLamparas":
-                            descuento = 25
-                        case _:
-                            descuento = 20
-                case 3:
-                    match marca:
-                        case "ArgentinaLuz":
-                            descuento = 15
-                        case "FelipeLamparas":
-                            descuento = 10
-                        case _:
-                            descuento = 5
-        print(descuento)
-                
+        match cantidad:
+            case  1 | 2:
+                descuento = 0
+            case 3:
+                match marca:
+                    case "ArgentinaLuz":
+                        descuento = 15
+                    case "FelipeLamparas":
+                        descuento = 10
+                    case _:
+                        descuento = 5
+            case 4:
+                match marca:
+                    case "ArgentinaLuz" | "FelipeLamparas":
+                        descuento = 25
+                    case _:
+                        descuento = 20
+            case 5:
+                match marca:
+                    case "ArgentinaLuz":
+                        descuento = 40
+                    case _:
+                        descuento = 30
+            case _:
+                descuento = 50
 
+        descuento_adicional_cantidad = PRECIO_BASE_LAMPARAS * cantidad * (1 - descuento / 100) >= DESCUENTO_MAXIMO_BASE
+        
+        if descuento_adicional_cantidad:
+            descuento += descuento * DESCUENTO_ADICIONAL / 100
+
+        #valores salida dialog alert
+        valor_total_sin_descuento = cantidad * PRECIO_BASE_LAMPARAS
+        valor_total_con_descuento = cantidad * PRECIO_BASE_LAMPARAS * (1 - descuento / 100)
+
+        mensaje = "cantidad de lamparas {0}. \n descuento aplicado: %{1}, \n valor sin descuento: ${2} \n valor con descuento ${3:.0F}. \n marca: {4}".format(cantidad, descuento, valor_total_sin_descuento, valor_total_con_descuento, marca)
+        
+        alert(title="salida", message=mensaje)
             
 if __name__ == "__main__":
     app = App()

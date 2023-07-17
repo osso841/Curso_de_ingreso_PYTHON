@@ -53,9 +53,8 @@ class App(customtkinter.CTk):
     
     def btn_informar_on_click(self):
         #declaracion constantes
-        ESTADIA_BASE = 15000
+        VUELO_BASE = 15000
         
-
         #declaracion
         variaciones = 0
 
@@ -63,9 +62,17 @@ class App(customtkinter.CTk):
         destino = self.combobox_destino.get()
         estaciones = self.combobox_estaciones.get()
 
-        #proceso
+        #calculo de descuentos/aumentos aplicados
         match destino:
-            case "Bariloche": #-------------------
+            case "Bariloche": 
+                match estaciones:
+                    case "Verano":
+                        variaciones -= 20
+                    case "Otoño" | "Primavera":
+                        variaciones += 10
+                    case "Invierno":
+                        variaciones += 20
+            case "Mar del plata": 
                 match estaciones:
                     case "Verano":
                         variaciones += 20
@@ -73,30 +80,24 @@ class App(customtkinter.CTk):
                         variaciones += 10
                     case "Invierno":
                         variaciones -= 20
-            case "Mar del plata": #---------------
-                match estaciones:
-                    case "Verano":
-                        variaciones += 20
-                    case "Otoño" | "Primavera":
-                        variaciones += 10
-                    case "Invierno":
-                        variaciones -= 20
-            case "Cataratas": #-------------------
+            case "Cataratas": 
                 match estaciones:
                     case "Verano" | "Otoño" | "Primavera":
                         variaciones += 10
                     case _:
                         variaciones -= 10
-            case "Cordoba": #---------------------
+            case "Cordoba": 
                 match estaciones:
                     case "Verano":
                         variaciones += 10
                     case "Invierno":
                         variaciones -= 10
 
-        costo_tarifa = ESTADIA_BASE * (1 + variaciones / 100)
+        #costo tarifa segun destino y estacion
+        costo_tarifa = VUELO_BASE * (1 + variaciones / 100)
 
-        alert(title="Costo Estadia", message="la estadia en {0} en la temporada de {1} es de : ${2} por persona".format(destino, estaciones, costo_tarifa))
+        #salida
+        alert(title="Costo viaje", message="el viaje a {0} en la temporada de {1} tiene un valor de: ${2:.2f} por persona".format(destino, estaciones, costo_tarifa, variaciones))
     
 if __name__ == "__main__":
     app = App()
