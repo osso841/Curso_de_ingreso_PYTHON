@@ -29,9 +29,20 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
+        #entrada
+        destinos = self.combobox_destino.get()
+
+        #proceso
+        match destinos:
+            case "Bariloche" | "Ushuaia":
+                mensaje = "hace frio la mayoria de las estaciones del año"
+            case "Mar del plata" | "Cataratas":
+                mensaje = "hace calor la mayoria de las estaciones del año"
+        
+        #salida
+        alert(title=destinos, message=mensaje)
     
-    
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

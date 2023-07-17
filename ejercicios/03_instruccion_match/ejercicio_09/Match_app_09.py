@@ -14,13 +14,13 @@ en función de la estación del año y del destino elegido:
         Cataratas y Córdoba tienen un descuento del 10%
         Mar del plata tiene un descuento del 20%
     Si es Verano:
-        Bariloche tiene un descuento del 20%
+        Bariloche tiene un descuento del 20% ---
         Cataratas y Cordoba tienen un aumento del 10%
-        Mar del plata tiene un aumento del 20%
+        Mar del plata tiene un aumento del 20% ---
     Si es Primavera u Otoño:
-        Bariloche tiene un aumento del 10%
+        Bariloche tiene un aumento del 10% ---
         Cataratas tiene un aumento del 10%
-        Mar del plata tiene un aumento del 10%
+        Mar del plata tiene un aumento del 10% ---
         Córdoba tiene precio sin descuento
 
 '''
@@ -52,8 +52,51 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
-            
+        #declaracion constantes
+        ESTADIA_BASE = 15000
+        
+
+        #declaracion
+        variaciones = 0
+
+        #entrada
+        destino = self.combobox_destino.get()
+        estaciones = self.combobox_estaciones.get()
+
+        #proceso
+        match destino:
+            case "Bariloche": #-------------------
+                match estaciones:
+                    case "Verano":
+                        variaciones += 20
+                    case "Otoño" | "Primavera":
+                        variaciones += 10
+                    case "Invierno":
+                        variaciones -= 20
+            case "Mar del plata": #---------------
+                match estaciones:
+                    case "Verano":
+                        variaciones += 20
+                    case "Otoño" | "Primavera":
+                        variaciones += 10
+                    case "Invierno":
+                        variaciones -= 20
+            case "Cataratas": #-------------------
+                match estaciones:
+                    case "Verano" | "Otoño" | "Primavera":
+                        variaciones += 10
+                    case _:
+                        variaciones -= 10
+            case "Cordoba": #---------------------
+                match estaciones:
+                    case "Verano":
+                        variaciones += 10
+                    case "Invierno":
+                        variaciones -= 10
+
+        costo_tarifa = ESTADIA_BASE * (1 + variaciones / 100)
+
+        alert(title="Costo Estadia", message="la estadia en {0} en la temporada de {1} es de : ${2} por persona".format(destino, estaciones, costo_tarifa))
     
 if __name__ == "__main__":
     app = App()
