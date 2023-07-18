@@ -35,7 +35,7 @@ class App(customtkinter.CTk):
     def btn_comenzar_ingreso_on_click(self):
         #declaracion de variable de escape
         continuar = True
-
+        #declaracion variables
         suma_negativos = 0
         suma_positivos = 0
         cantidad_negativos = 0
@@ -51,18 +51,16 @@ class App(customtkinter.CTk):
             if numero > 0:
                 suma_positivos += numero
                 cantidad_positivos += 1
-                print(suma_positivos)
             elif numero < 0:
                 suma_negativos += numero
                 cantidad_negativos += 1
-                print(suma_negativos)
             else:
                 cantidad_ceros += 1
 
             #consulta continuar cargando numeros usuario
             continuar = question(title="cargar numeros", message="ingresar otro numero?")
 
-        #calculo diferencie positivos entre negativos
+        #calculo diferencia entre la "CANTIDAD" de numeros positivos y negativos
         diferencia_numeros_positivos_negativos = suma_positivos + suma_negativos
 
         #mensaje salida

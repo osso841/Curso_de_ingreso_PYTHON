@@ -35,26 +35,31 @@ class App(customtkinter.CTk):
         #declaracion datos
         continuar = True
         suma_total = 0
-        promedio = 0
+        promedio = None
         cantidad_numeros = 0
 
+        #entrada
+        numero = prompt(title="suma total", prompt="ingrese numero")
+
         # ingreso numeros
-        while continuar:
-            #entrada
-            numero = prompt(title="suma total", prompt="ingrese numero")
+        while numero != None:
+            #parseo de variable
             numero = int(numero)
 
             #acumulador cantidad de numeros
             cantidad_numeros += 1
+
             #total suma acumulado
             suma_total += numero
-            print(suma_total)
 
-            continuar = question(title="carga numeros", message="desea continuar?")
-
-
-        #calculo prometio total
-        promedio = suma_total / cantidad_numeros
+            #solicita nuevo ingreso
+            numero = prompt(title="suma total", prompt="ingrese numero")
+        
+        if cantidad_numeros:
+            #calculo prometio total
+            promedio = suma_total / cantidad_numeros
+        else:
+            promedio = "no se puede calcular"
 
         #salida 
         self.txt_promedio.delete(0, "end")
@@ -62,14 +67,6 @@ class App(customtkinter.CTk):
 
         self.txt_suma_acumulada.delete(0, "end")
         self.txt_suma_acumulada.insert(0, suma_total)
-
-        
-
-
-        
-
-        
-
     
 if __name__ == "__main__":
     app = App()

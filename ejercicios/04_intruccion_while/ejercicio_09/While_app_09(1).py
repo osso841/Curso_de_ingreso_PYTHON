@@ -36,45 +36,13 @@ class App(customtkinter.CTk):
                               columnspan=2, sticky="nsew")
 
     def btn_comenzar_ingreso_on_click(self):
-        #declaracion ingreso
-        numero_maximo = None
-        numero_minimo = None
-
-
         
-        #ingreso de variables indefinidas
+        flag_primer_numero = True
+
         while True:
-            #entrada
-            numero = prompt(title="entrada", prompt="inserte numero:")
-            if numero == None:
-                break
-            #parseo de variable
-            numero = int(numero)
-
-            #asignacion de numeros maximos y minimos
-            if numero_maximo == None and numero_minimo == None:
-                numero_maximo = numero
-                numero_minimo = numero
-            elif numero > numero_maximo:
-                numero_maximo = numero
-            elif numero < numero_minimo:
-                numero_minimo = numero
-
-            numero = prompt(title="entrada", prompt="inserte numero:")
-
-        #verificacion numeros minimos y maximos
-        if not numero_maximo :
-            numero_maximo = "no existe"
-            numero_minimo = "no existe"
-
-        #salida cuadros de textos
-        # numeros minimos
-        self.txt_minimo.delete(0, "end")
-        self.txt_minimo.insert(0, numero_minimo)
-        
-        # numeros maximos
-        self.txt_maximo.delete(0, "end")
-        self.txt_maximo.insert(0, numero_maximo)
+            numero_ingresado = prompt("numero", "ingrese un numero:")
+            if numero_ingresado is None:
+            breaknumero 
 
 
 if __name__ == "__main__":
