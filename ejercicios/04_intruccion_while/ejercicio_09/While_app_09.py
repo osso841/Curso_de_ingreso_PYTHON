@@ -36,7 +36,38 @@ class App(customtkinter.CTk):
                               columnspan=2, sticky="nsew")
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        #declaracion ingreso
+        continuar = True
+        numero_maximo = None
+        numero_minimo = None
+
+        #ingreso de variables indefinidas
+        while continuar:
+            #entrada
+            numero = prompt(title="entrada", prompt="inserte numero:")
+            numero = int(numero)
+
+            #asignacion de numeros maximos y minimos
+            if not (numero_maximo and numero_minimo):
+                numero_maximo = numero
+                numero_minimo = numero
+            elif numero < numero_maximo:
+                numero_maximo = numero
+            elif numero > numero_minimo:
+                numero_minimo = numero
+
+
+            # continuar carga numeros usuario
+            continuar = question(title="continuar carga numeros", message="desea continuar?")
+        
+        #salida cuadros de textos
+        # numeros minimos
+        self.txt_minimo.delete(0, "end")
+        self.txt_minimo.insert(0, numero_minimo)
+        
+        # numeros maximos
+        self.txt_maximo.delete(0, "end")
+        self.txt_maximo.insert(0, numero_maximo)
 
 
 if __name__ == "__main__":

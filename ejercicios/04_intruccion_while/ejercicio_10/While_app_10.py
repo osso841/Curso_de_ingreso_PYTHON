@@ -33,9 +33,45 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        #declaracion de variable de escape
+        continuar = True
 
-    
+        suma_negativos = 0
+        suma_positivos = 0
+        cantidad_negativos = 0
+        cantidad_positivos = 0
+        cantidad_ceros = 0
+
+        while continuar:
+            #entrada de numeros
+            numero = prompt(title="numero", prompt="ingrese un numero")
+            numero = int(numero)
+
+            #proceso verificacion de numeros
+            if numero > 0:
+                suma_positivos += numero
+                cantidad_positivos += 1
+                print(suma_positivos)
+            elif numero < 0:
+                suma_negativos += numero
+                cantidad_negativos += 1
+                print(suma_negativos)
+            else:
+                cantidad_ceros += 1
+
+            #consulta continuar cargando numeros usuario
+            continuar = question(title="cargar numeros", message="ingresar otro numero?")
+
+        #calculo diferencie positivos entre negativos
+        diferencia_numeros_positivos_negativos = suma_positivos + suma_negativos
+
+        #mensaje salida
+        mensaje_ingreso_numeros = "el usuario ingreso:\n{0} numeros positivos\n{1} numeros negativos\n{2} ceros".format(cantidad_positivos, cantidad_negativos, cantidad_ceros)
+        mensaje_calculos = "\nsuma numeros negativos {0}\nsuma numeros positivos {1}\ndiferencia: {2}".format(suma_negativos, suma_positivos, diferencia_numeros_positivos_negativos)
+
+        #salida
+        alert(title="datos", message=mensaje_ingreso_numeros + mensaje_calculos)
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

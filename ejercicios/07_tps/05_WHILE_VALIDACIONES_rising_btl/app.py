@@ -9,10 +9,10 @@ Rising BTL. Empresa dedicada a la toma de datos para realizar estadísticas y ce
 por ventanas emergentes solamente (para evitar hacking y cargas maliciosas) y luego asignarla a cuadros de textos. 
 
 Los datos requeridos son los siguientes:
-    Apellido
-    Edad, entre 18 y 90 años inclusive.
-    Estado civil, ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]
-    Número de legajo, numérico de 4 cifras, sin ceros a la izquierda.
+    Apellido ---
+    Edad, entre 18 y 90 años inclusive. ---
+    Estado civil, ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"] ---
+    Número de legajo, numérico de 4 cifras, sin ceros a la izquierda. ---
 '''
 
 
@@ -50,7 +50,55 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        pass
+        #declaracion de variables
+        continuar = True
+
+        #entrada de datos
+        apellido = prompt(title="datos personales", prompt="ingrese su apellido")
+        
+        #entrada edad con validacion
+        edad = prompt(title="datos personales", prompt="ingrese su edad") #TODO inicializar legajo en None. salva 2 lineas de codigo
+        edad = int(edad)
+        while not (18 <= edad <= 90):
+            edad = prompt(title="datos personales", prompt="ingrese su edad")
+            edad = int(edad)
+
+        #entrada estado civil con validacion
+        while continuar:
+            estado_civil = prompt(title="estado civil", prompt="Soltero/a (S). Casado/a (C). Divorciado/a (D). Viudo/a (V).")
+            match estado_civil:
+                case "S":
+                    estado_civil = "Soltero/a"
+                    continuar = False
+                case "C":
+                    estado_civil = "Casado/a"
+                    continuar = False
+                case "D":
+                    estado_civil = "Divorciado/a"
+                    continuar = False
+                case "V":
+                    estado_civil = "Viudo/a"
+                    continuar = False
+
+        #entrada numero de legajo
+        legajo = prompt(title="datos personales", prompt="ingrese su legajo") #TODO inicializar legajo en None. salva 2 lineas de codigo
+        legajo = int(legajo)
+        while not(1000 <= legajo <= 9999):
+            legajo = prompt(title="datos personales", prompt="ingrese su legajo")
+            legajo = int(legajo)
+
+        #asignacion valores de entrada en los cuadros de texto
+        self.txt_apellido.delete(0, "end")
+        self.txt_apellido.insert(0, apellido)
+
+        self.txt_edad.delete(0, "end")
+        self.txt_edad.insert(0, edad)
+
+        self.combobox_tipo.set(estado_civil)
+
+        self.txt_legajo.delete(0, "end")
+        self.txt_legajo.insert(0, legajo)
+
 
 
 if __name__ == "__main__":

@@ -32,7 +32,35 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        #declaracion de variables y acumuladores
+        continuar = True
+        suma_total = 0
+        multiplicacion_total = 1
+
+        #calculo con validacion de usuario
+        while continuar:
+            numero = prompt(title="numero entero", prompt="ingrese numero")
+            numero = int(numero)
+            if not numero:
+                break
+            #operacion a realizar segun signo
+            if numero > 0:
+                suma_total += numero
+                print("numero:{0}\nsuma total acumulada = {1}".format(numero, suma_total))
+            else:
+                multiplicacion_total *= numero
+
+                print("numero:{0}\nmultiplicacion acumulada:{1}".format(numero, multiplicacion_total))
+
+            #consulta continuar cargando numeros usuario
+            continuar = question(title="solicitud", message="desea continuar?")
+
+        #salida por caja de texto
+        self.txt_suma_acumulada.delete(0, "end")
+        self.txt_suma_acumulada.insert(0, suma_total)
+
+        self.txt_producto.delete(0, "end")
+        self.txt_producto.insert(0, multiplicacion_total)
 
     
 if __name__ == "__main__":

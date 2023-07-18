@@ -29,10 +29,46 @@ class App(customtkinter.CTk):
 
         self.btn_mostrar = customtkinter.CTkButton(master=self, text="Comenzar Ingreso", command=self.btn_comenzar_ingreso_on_click)
         self.btn_mostrar.grid(row=2, padx=20, pady=20, columnspan=2, sticky="nsew")
-
+ 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        #declaracion datos
+        continuar = True
+        suma_total = 0
+        promedio = 0
+        cantidad_numeros = 0
+
+        # ingreso numeros
+        while continuar:
+            #entrada
+            numero = prompt(title="suma total", prompt="ingrese numero")
+            numero = int(numero)
+
+            #acumulador cantidad de numeros
+            cantidad_numeros += 1
+            #total suma acumulado
+            suma_total += numero
+            print(suma_total)
+
+            continuar = question(title="carga numeros", message="desea continuar?")
+
+
+        #calculo prometio total
+        promedio = suma_total / cantidad_numeros
+
+        #salida 
+        self.txt_promedio.delete(0, "end")
+        self.txt_promedio.insert(0, promedio)
+
+        self.txt_suma_acumulada.delete(0, "end")
+        self.txt_suma_acumulada.insert(0, suma_total)
+
+        
+
+
+        
+
+        
 
     
 if __name__ == "__main__":

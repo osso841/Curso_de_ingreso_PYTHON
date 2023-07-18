@@ -33,6 +33,9 @@ class App(customtkinter.CTk):
             numero = prompt(title="validar numero", prompt="ingrese numero")
             numero = int(numero)
 
+        alert(title="valor de ingreso (1-9)", message="se ingreso el numero: {0}".format(numero))
+
+
     
 if __name__ == "__main__":
     app = App()

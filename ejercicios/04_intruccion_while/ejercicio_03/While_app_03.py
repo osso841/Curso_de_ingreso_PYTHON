@@ -27,8 +27,8 @@ class App(customtkinter.CTk):
         #declaracion de variables
         clave = "utn750"
 
+        #entrada contraseña con validacion
         contraseña = prompt(title="entrada", prompt="ingrese contraseña")
-
         while not (contraseña == clave):
             contraseña = prompt(title="entrada", prompt="ingrese contraseña")
 
