@@ -32,41 +32,46 @@ class App(customtkinter.CTk):
  
 
     def btn_comenzar_ingreso_on_click(self):
-        #declaracion datos
-        continuar = True
-        suma_total = 0
-        promedio = None
-        cantidad_numeros = 0
+        #declaracion
+        suma_acumulada = 0
+        acumulador_promedio = 0
 
-        #entrada
-        numero = prompt(title="suma total", prompt="ingrese numero")
+        while True:
+            #entrada
+            numero = prompt(title="intruduzca numero", prompt="numero")
 
-        # ingreso numeros
-        while numero != None:
-            #parseo de variable
+            #escape por boton cancel
+            if numero == None or numero == "" or not numero.isdigit():
+                break
+            
             numero = int(numero)
+            suma_acumulada += numero
+            acumulador_promedio +=1
 
-            #acumulador cantidad de numeros
-            cantidad_numeros += 1
+        #salida
+        match numero:
+            case None:
+                if acumulador_promedio == 0:
+                    alert(title="Cancel", message="se ha cerrado la operacion")
+                else:
+                    promedio = suma_acumulada / acumulador_promedio
 
-            #total suma acumulado
-            suma_total += numero
+                    self.txt_suma_acumulada.delete(0, "end")
+                    self.txt_suma_acumulada.insert(0, suma_acumulada)
 
-            #solicita nuevo ingreso
-            numero = prompt(title="suma total", prompt="ingrese numero")
-        
-        if cantidad_numeros:
-            #calculo prometio total
-            promedio = suma_total / cantidad_numeros
-        else:
-            promedio = "no se puede calcular"
+                    self.txt_promedio.delete(0, "end")
+                    self.txt_promedio.insert(0, promedio)
+            case _:
+                alert(title="Error", message="no se han ingresado numeros")
 
-        #salida 
-        self.txt_promedio.delete(0, "end")
-        self.txt_promedio.insert(0, promedio)
+                
 
-        self.txt_suma_acumulada.delete(0, "end")
-        self.txt_suma_acumulada.insert(0, suma_total)
+
+
+
+
+
+
     
 if __name__ == "__main__":
     app = App()

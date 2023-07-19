@@ -37,30 +37,37 @@ class App(customtkinter.CTk):
         #declaracion de variables
         contador = 0
         suma_acumulada = 0
+        numero = None
 
         # entrada de datos
-        while contador < 5:
+        while True:
+            #entrada
             numero = prompt(title="ingrese numero", prompt="numero")
+            # escape por boton cancel
+            if numero == None:
+                break
+            # parseo de variable
             numero = int(numero)
+
             #suma de los valores ingresado
             suma_acumulada += numero
+            
+            #escape por cantidad maxima
             contador += 1
+            if contador == CANTIDAD_NUMEROS:
+                break
 
-        #calculo promedio total
-        promedio_total = suma_acumulada / CANTIDAD_NUMEROS
-        
-        # parseo de variables
-        suma_acumulada = str(suma_acumulada)
-        promedio_total = str(promedio_total)
+        if numero != None:
+            #calculo promedio total
+            promedio_total = suma_acumulada / CANTIDAD_NUMEROS
 
-        #salida
-        #promedio
-        self.txt_promedio.delete(0, 'end')
-        self.txt_promedio.insert(0, promedio_total)
+            #salida promedio
+            self.txt_promedio.delete(0, 'end')
+            self.txt_promedio.insert(0, promedio_total)
 
-        #suma total
-        self.txt_suma_acumulada.delete(0, 'end')
-        self.txt_suma_acumulada.insert(0, suma_acumulada)
+            #salida suma total
+            self.txt_suma_acumulada.delete(0, 'end')
+            self.txt_suma_acumulada.insert(0, suma_acumulada)
 
     
 if __name__ == "__main__":

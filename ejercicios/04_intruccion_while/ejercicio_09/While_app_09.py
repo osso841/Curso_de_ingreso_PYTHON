@@ -39,8 +39,6 @@ class App(customtkinter.CTk):
         #declaracion ingreso
         numero_maximo = None
         numero_minimo = None
-
-
         
         #ingreso de variables indefinidas
         while True:
