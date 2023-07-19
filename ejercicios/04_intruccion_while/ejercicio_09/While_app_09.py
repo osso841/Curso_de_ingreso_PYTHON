@@ -39,6 +39,7 @@ class App(customtkinter.CTk):
         #declaracion ingreso
         numero_maximo = None
         numero_minimo = None
+        flag_primera_variable = True
         
         #ingreso de variables indefinidas
         while True:
@@ -46,33 +47,29 @@ class App(customtkinter.CTk):
             numero = prompt(title="entrada", prompt="inserte numero:")
             if numero == None:
                 break
+
             #parseo de variable
             numero = int(numero)
 
             #asignacion de numeros maximos y minimos
-            if numero_maximo == None and numero_minimo == None:
+            if flag_primera_variable or numero > numero_maximo:
                 numero_maximo = numero
-                numero_minimo = numero
-            elif numero > numero_maximo:
-                numero_maximo = numero
-            elif numero < numero_minimo:
-                numero_minimo = numero
 
-            numero = prompt(title="entrada", prompt="inserte numero:")
-
-        #verificacion numeros minimos y maximos
-        if not numero_maximo :
-            numero_maximo = "no existe"
-            numero_minimo = "no existe"
+            if flag_primera_variable or numero < numero_minimo:
+                numero_minimo = numero
+                flag_primera_variable = False
 
         #salida cuadros de textos
-        # numeros minimos
-        self.txt_minimo.delete(0, "end")
-        self.txt_minimo.insert(0, numero_minimo)
-        
-        # numeros maximos
-        self.txt_maximo.delete(0, "end")
-        self.txt_maximo.insert(0, numero_maximo)
+        if flag_primera_variable:
+            alert(title="incompleto", message="no se ha ingresado valores")
+        else:
+            # numeros minimos
+            self.txt_minimo.delete(0, "end")
+            self.txt_minimo.insert(0, numero_minimo)
+            
+            # numeros maximos
+            self.txt_maximo.delete(0, "end")
+            self.txt_maximo.insert(0, numero_maximo)
 
 
 if __name__ == "__main__":

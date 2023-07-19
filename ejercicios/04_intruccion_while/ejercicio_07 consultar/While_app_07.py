@@ -41,7 +41,7 @@ class App(customtkinter.CTk):
             numero = prompt(title="intruduzca numero", prompt="numero")
 
             #escape por boton cancel
-            if numero == None or numero == "" or not numero.isdigit():
+            if numero == None or numero == "":
                 break
             
             numero = int(numero)

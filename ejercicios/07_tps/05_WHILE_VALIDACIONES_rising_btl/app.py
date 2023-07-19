@@ -52,7 +52,6 @@ class App(customtkinter.CTk):
     def btn_validar_on_click(self):
         #declaracion de variables
         continuar = True
-
         #entrada de datos
         apellido = prompt(title="datos personales", prompt="ingrese su apellido")
         

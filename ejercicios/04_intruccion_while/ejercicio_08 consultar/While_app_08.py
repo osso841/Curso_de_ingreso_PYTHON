@@ -10,7 +10,6 @@ Al presionar el botón ‘Comenzar ingreso’, solicitar mediante prompt todos l
 hasta que presione el botón Cancelar (en el prompt) o el usuario ingrese cero. 
 Calcular la suma acumulada de los positivos y multiplicar los negativos. 
 Luego informar los resultados en las cajas de texto txt_suma_acumulada y txt_producto
-
 '''
 
 class App(customtkinter.CTk):
@@ -44,7 +43,7 @@ class App(customtkinter.CTk):
             numero = prompt(title="numero entero", prompt="ingrese numero")
 
             #escape de bucle
-            if numero == None or numero == "":
+            if numero == None:
                 break
 
             numero = int(numero)
@@ -57,16 +56,12 @@ class App(customtkinter.CTk):
             else:
                 multiplicacion_total *= numero
 
-        match numero:
-            case None:
-                #salida por caja de texto
-                self.txt_suma_acumulada.delete(0, "end")
-                self.txt_suma_acumulada.insert(0, suma_total)
+        #salida por caja de texto
+        self.txt_suma_acumulada.delete(0, "end")
+        self.txt_suma_acumulada.insert(0, suma_total)
 
-                self.txt_producto.delete(0, "end")
-                self.txt_producto.insert(0, multiplicacion_total)
-            case _:
-                alert(title="error", message="no se han ingresado numeros")
+        self.txt_producto.delete(0, "end")
+        self.txt_producto.insert(0, multiplicacion_total)
 
     
 if __name__ == "__main__":
