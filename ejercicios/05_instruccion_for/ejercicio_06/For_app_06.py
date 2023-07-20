@@ -22,8 +22,14 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
-        
+        contador = 0
+        numero = prompt(title = "entrada", prompt="ingrese un valor")
+        numero = int(numero)
+        for i in range(0, numero, 1):
+            if i % 2 == 0:
+                contador += 1
+        mensaje = "hay {} numeros pares en el rango de valores desde 0 hasta {}".format(contador, numero)
+        alert(title="resultado", message=mensaje)
     
 if __name__ == "__main__":
     app = App()

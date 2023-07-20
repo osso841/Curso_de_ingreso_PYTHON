@@ -23,7 +23,8 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass 
+        for i in range(0, 5, 1):
+            alert(title="bucle for",message="hola mundo") 
        
             
 

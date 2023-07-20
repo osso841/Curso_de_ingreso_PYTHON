@@ -29,7 +29,11 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        cantidad_repeticiones = self.txt_repetir.get()
+        cantidad_repeticiones = int(cantidad_repeticiones)
+
+        for i in range(0, cantidad_repeticiones, 1):
+            alert(title="ej3", message="hola mundo")
 
         
         

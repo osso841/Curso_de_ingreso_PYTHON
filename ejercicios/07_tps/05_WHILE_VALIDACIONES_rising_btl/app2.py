@@ -50,67 +50,58 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        # declaracion de variables
-        bandera_entrada = True
+        #entrada apellido con validacion
+        while True:
+            apellido = prompt(title="datos personales", prompt="ingrese su apellido")
+            if apellido == "":
+                alert(title="entrada incorrecta", message="ingrese apellido nuevamente")
+            else:
+                break
 
-        while bandera_entrada:
+        #entrada edad con validacion
+        while True:
+            edad = prompt(title="datos personales", prompt="ingrese su edad")
+            edad = int(edad)
+            if edad >= 18 and edad <= 90:
+                break
+            alert(title="dato incorrecto", message="ingrese una edad valida")
 
-            #entrada apellido con validacion
-            while True:
-                apellido = prompt(title="datos personales", prompt="ingrese su apellido")
-                if apellido == "":
-                    alert(title="entrada incorrecta", message="ingrese apellido nuevamente")
-                else:
+        # entrada estado civil con validacion
+        while True:
+            estado_civil = prompt(title="estado civil", prompt="Soltero/a(S). Casado/a(C). Divorciado/a(D). Viudo/a(V).")
+            match estado_civil:
+                case "S":
+                    estado_civil = "Soltero/a" 
                     break
-
-            #entrada edad con validacion
-            while True:
-                edad = prompt(title="datos personales", prompt="ingrese su edad")
-                edad = int(edad)
-                if edad >= 18 and edad <= 90:
+                case "C":
+                    estado_civil = "Casado/a"
                     break
-                alert(title="dato incorrecto", message="ingrese una edad valida")
-
-            # entrada estado civil con validacion
-            while True:
-                estado_civil = prompt(title="estado civil", prompt="Soltero/a(S). Casado/a(C). Divorciado/a(D). Viudo/a(V).")
-                match estado_civil:
-                    case "S":
-                        estado_civil = "Soltero/a"
-                        break
-                    case "C":
-                        estado_civil = "Casado/a"
-                        break
-                    case "D":
-                        estado_civil = "Divorciado/a"
-                        break
-                    case "V":
-                        estado_civil = "Viudo/a"
-                        break
-                    case _:
-                        alert(title="dato incorrecto", message="ingrese un estado civil valido")
-
-            #entrada de legajo con validacion
-            while True:
-                legajo = prompt(title="datos personales", prompt="legajo")
-                legajo = int(legajo)
-
-                if legajo > 1000 and legajo < 9999:
+                case "D":
+                    estado_civil = "Divorciado/a"
                     break
-                alert(title="dato incorrecto", message="ingrese un legajo valido")
-            #salida caja de texto
-            self.txt_apellido.delete(0, "end")
-            self.txt_apellido.insert(0, apellido)
-            self.txt_edad.delete(0, "end")
-            self.txt_edad.insert(0, edad)
-            self.txt_legajo.delete(0, "end")
-            self.txt_legajo.insert(0, legajo)
-            self.combobox_tipo.set(estado_civil)
+                case "V":
+                    estado_civil = "Viudo/a"
+                    break
+                case _:
+                    alert(title="dato incorrecto", message="ingrese un estado civil valido")
 
-            #consulta continuacion de carga de datos
-            continuar = question(title="continuar?", message="desea continuar con la carga de datos?")
-            if continuar == False:
-                bandera_entrada = False
+        #entrada de legajo con validacion
+        while True:
+            legajo = prompt(title="datos personales", prompt="legajo")
+            legajo = int(legajo)
+            if legajo > 1000 and legajo < 9999:
+                break
+            alert(title="dato incorrecto", message="ingrese un legajo valido")
+            
+        #salida caja de texto
+        self.txt_apellido.delete(0, "end")
+        self.txt_apellido.insert(0, apellido)
+        self.txt_edad.delete(0, "end")
+        self.txt_edad.insert(0, edad)
+        self.txt_legajo.delete(0, "end")
+        self.txt_legajo.insert(0, legajo)
+        self.combobox_tipo.set(estado_civil)
+
 
 
         

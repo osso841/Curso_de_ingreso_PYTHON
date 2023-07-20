@@ -2,6 +2,7 @@ import tkinter
 from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
+# from itertools import count
 import customtkinter
 
 '''
@@ -21,7 +22,21 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        # para numeros altos con import
+        # for i in count():
+
+        #entrada
+        for i in range(1000):
+            ingreso = prompt(title="entrada numerica", prompt="ingrese un numero")
+            if ingreso == None:
+                break
+
+            ingreso = int(ingreso)
+            
+            if ingreso == 9:
+                break
+
+
         
     
 if __name__ == "__main__":

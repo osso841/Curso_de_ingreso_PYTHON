@@ -39,7 +39,8 @@ class App(customtkinter.CTk):
         edad_total_acumulada = 0
         cantidad_de_candidatos = 0
         cantidad_de_votos = 0
-
+        
+        # variable continuar proceso
         continuar_carga = True
 
         #carga de candidatos
