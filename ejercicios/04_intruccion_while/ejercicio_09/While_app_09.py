@@ -54,7 +54,7 @@ class App(customtkinter.CTk):
             #asignacion de numeros maximos y minimos
             if flag_primera_variable or numero > numero_maximo:
                 numero_maximo = numero
-
+  
             if flag_primera_variable or numero < numero_minimo:
                 numero_minimo = numero
                 flag_primera_variable = False

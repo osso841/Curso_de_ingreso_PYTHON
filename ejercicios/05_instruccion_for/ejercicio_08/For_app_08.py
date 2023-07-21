@@ -21,7 +21,29 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        #declaracion constante numeros primos
+        COINCIDENCIA_NUMERO_PRIMO = 2
+
+        #entrada de variables
+        numero = prompt(title="numero primo", prompt="ingrese un valor")
+
+        #parseo
+        numero = int(numero)
+        contador = 0
+
+        #calculo de numeros primos
+        for i in range(1, numero + 1, 1):
+            if numero % i == 0:
+                contador += 1
+
+        #mesaje de salida prom
+        if contador == COINCIDENCIA_NUMERO_PRIMO:
+            mensaje = "es primo"
+        else:
+            mensaje = "no es primo"
+
+        alert(title="numeros primos", message=mensaje)
+
     
 if __name__ == "__main__":
     app = App()

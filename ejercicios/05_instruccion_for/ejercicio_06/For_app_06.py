@@ -22,13 +22,18 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
+        #declaracion
         contador = 0
+        #entrada
         numero = prompt(title = "entrada", prompt="ingrese un valor")
+        #parseo de variable
         numero = int(numero)
+        #calculo de numeros pares
         for i in range(0, numero, 1):
             if i % 2 == 0:
                 contador += 1
-        mensaje = "hay {} numeros pares en el rango de valores desde 0 hasta {}".format(contador, numero)
+        #mensaje y salida
+        mensaje = "hay {0} numeros pares en el rango de valores desde 0 hasta {1}".format(contador, numero)
         alert(title="resultado", message=mensaje)
     
 if __name__ == "__main__":
