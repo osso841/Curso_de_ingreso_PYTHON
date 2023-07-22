@@ -42,7 +42,7 @@ class App(customtkinter.CTk):
 
     def btn_validar_on_click(self):
         # declaracion de constantes
-        CANTIDAD_DE_POSTULANTES = 10
+        CANTIDAD_DE_POSTULANTES = 4
 
 
         #declaracion de variables
@@ -50,15 +50,15 @@ class App(customtkinter.CTk):
         primer_postulante_js = True #b
         edad_minima_postulante_js = None #b
         nombre_postulante_js = None #b
-        contador_edad_f = 0 #c
-        acumulador_f = 0 #c e
-        contador_edad_m = 0 #c
-        acumulador_m = 0 #c e
-        contador_edad_nb = 0 #c
-        acumulador_nb = 0 #c e
-        acumulador_tecnologia_py = 0 #d
-        acumulador_tecnologia_js = 0 #d
-        acumulador_tecnologia_net = 0 #d
+        acumulador_edad_f = 0 #c
+        contador_edades_f = 0 #c e
+        acumulador_edad_m = 0 #c
+        contador_edades_m = 0 #c e
+        acumulador_edad_nb = 0 #c
+        contador_edades_nb = 0 #c e
+        contador_tecnologia_py = 0 #d
+        contador_tecnologia_js = 0 #d
+        contador_tecnologia_net = 0 #d
         tecnologia_con_mas_postulantes = None #d
 
 
@@ -97,9 +97,9 @@ class App(customtkinter.CTk):
 
             #entrada puesto (Jr - Ssr - Sr)
             while True:
-                puesto_postulante = prompt(title="puesto del postulante", prompt="seleccione su puesto Js - Ssr - Sr")
+                puesto_postulante = prompt(title="puesto del postulante", prompt="seleccione su puesto Jr - Ssr - Sr")
                 match puesto_postulante:
-                    case "Js" | "Ssr" | "Sr":
+                    case "Jr" | "Ssr" | "Sr":
                         break
 
             # Cantidad de postulantes de genero no binario (NB) que programan en ASP.NET o JS cuya edad este entre 25 y 40, que se hayan postulado para un puesto Ssr.
@@ -108,7 +108,7 @@ class App(customtkinter.CTk):
                 contador_postulante_nb += 1
 
             # Nombre del postulante Jr con menor edad.
-            if primer_postulante_js or (edad_postulante < edad_minima_postulante_js) and puesto_postulante == "Js":
+            if primer_postulante_js or edad_postulante < edad_minima_postulante_js and puesto_postulante == "Jr":
                 edad_minima_postulante_js = edad_postulante
                 nombre_postulante_js = nombre_postulante
                 primer_postulante_js = False
@@ -116,44 +116,66 @@ class App(customtkinter.CTk):
             # Promedio de edades por género.
             match genero:
                 case "F":
-                    contador_edad_f += edad_postulante
-                    acumulador_f += 1
+                    acumulador_edad_f += edad_postulante
+                    contador_edades_f += 1
                 case "M":
-                    contador_edad_m += edad_postulante
-                    acumulador_m += 1   
+                    acumulador_edad_m += edad_postulante
+                    contador_edades_m += 1   
                 case "NB":
-                    contador_edad_nb += edad_postulante
-                    acumulador_nb += 1
+                    acumulador_edad_nb += edad_postulante
+                    contador_edades_nb += 1
 
             # Tecnologia con mas postulantes.
             match tecnologia_postulante:
                 case "PHYTON":
-                    acumulador_tecnologia_py += 1
+                    contador_tecnologia_py += 1
                 case "JS":
-                    acumulador_tecnologia_js += 1
+                    contador_tecnologia_js += 1
                 case "ASP.NET":
-                    acumulador_tecnologia_net += 1
+                    contador_tecnologia_net += 1
 
         #calculo de promedio de edades por genero
-        promedio_edades_f = contador_edad_f / acumulador_f
-        promedio_edades_m = contador_edad_m / acumulador_m
-        promedio_edades_nb = contador_edad_nb / acumulador_nb
+        if contador_edades_f != 0:
+            promedio_edades_f = acumulador_edad_f / contador_edades_f
+        else:
+            promedio_edades_f = "no hay postulantes femeninos"
+
+        if contador_edades_m != 0:
+            promedio_edades_m = acumulador_edad_m / contador_edades_m
+        else:
+            promedio_edades_m = "no hay postulantes masculinos"
+
+        if contador_edades_nb != 0:
+            promedio_edades_nb = acumulador_edad_nb / contador_edades_nb
+        else:
+            promedio_edades_nb = "no hay postulantes no binarios"
 
         # calculo tecnologia con mas postulantes
-        if (acumulador_tecnologia_py > acumulador_tecnologia_js):
-            if(acumulador_tecnologia_py > acumulador_tecnologia_net):
+        if contador_tecnologia_py >= contador_tecnologia_js:
+            if contador_tecnologia_py > contador_tecnologia_net:
                 tecnologia_con_mas_postulantes = "PYTHON"
-            else:
+            elif contador_tecnologia_py < contador_tecnologia_net:
                 tecnologia_con_mas_postulantes = "ASP.NET"
-        elif acumulador_tecnologia_js > acumulador_tecnologia_net:
+            else:
+                tecnologia_con_mas_postulantes = "misma cantidad de postulantes para todas las tecnologias"
+        elif contador_tecnologia_js > contador_tecnologia_net:
             tecnologia_con_mas_postulantes = "JS"
+        elif contador_tecnologia_js < contador_tecnologia_net:
+            tecnologia_con_mas_postulantes = "ASP.NET"
+        else:
+            tecnologia_con_mas_postulantes = "ASP.NET Y JS tienes la mayor cantidad de postulantes"
 
         # Porcentaje de postulantes de cada genero.
 
-        promedio_postulantes_f = acumulador_f / CANTIDAD_DE_POSTULANTES * 100
-        promedio_postulantes_m = acumulador_m  / CANTIDAD_DE_POSTULANTES * 100
-        promedio_postulantes_nb = acumulador_nb / CANTIDAD_DE_POSTULANTES * 100
+        porcentaje_postulantes_f = contador_edades_f / CANTIDAD_DE_POSTULANTES * 100
+        porcentaje_postulantes_m = contador_edades_m  / CANTIDAD_DE_POSTULANTES * 100
+        porcentaje_postulantes_nb = contador_edades_nb / CANTIDAD_DE_POSTULANTES * 100
 
+        print("PUNTO A: Cantidad de postulantes de genero no binario (NB) que programan en ASP.NET o JS cuya edad este entre 25 y 40, que se hayan postulado para un puesto Ssr.{0}".format(contador_postulante_nb))
+        print("PUNTO B: Nombre del postulante Jr con menor edad. {0}".format(nombre_postulante_js))
+        print("PUNTO C: Promedio de edades por género: \n Femenino: {0} postulantes\nMasculino: {1} postulantes\nNo Binario: {2} postulantes".format(promedio_edades_f, promedio_edades_m, promedio_edades_nb))
+        print("PUNTO D: Tecnologia con mas postulantes (solo hay una). {0}".format(tecnologia_con_mas_postulantes))
+        print("PUNTO E: Porcentaje de postulantes de cada genero.\nFemenino: %{0} postulantes\nMasculino: %{1} postulantes\nNo Binario %{2} postulante.".format(porcentaje_postulantes_f, porcentaje_postulantes_m, porcentaje_postulantes_nb))
 
 
         
