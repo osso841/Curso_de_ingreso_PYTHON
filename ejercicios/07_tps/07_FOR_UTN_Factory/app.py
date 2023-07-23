@@ -42,7 +42,10 @@ class App(customtkinter.CTk):
 
     def btn_validar_on_click(self):
         # declaracion de constantes
+
         CANTIDAD_DE_POSTULANTES = 4
+
+        CANTIDAD_DE_POSTULANTES = 2
 
 
         #declaracion de variables
@@ -65,12 +68,15 @@ class App(customtkinter.CTk):
 
         #calculo general de postulantes
         for i in range(1, CANTIDAD_DE_POSTULANTES + 1, 1):
+            #mensaje prompt
+            title_prompt: "dato postulante {0} de {1}".format(i, CANTIDAD_DE_POSTULANTES)
+
             #entrada nombre 
-            nombre_postulante = prompt(title="nombre postulante", prompt="ingrese nombre:")
+            nombre_postulante = prompt(title=title_prompt, prompt="ingrese nombre:")
 
             #entrada edad (mayor de edad) y validacion
             while True:
-                edad_postulante = prompt(title="edad postulante", prompt="ingrese edad:")
+                edad_postulante = prompt(title=title_prompt, prompt="ingrese edad:")
                 edad_postulante = int(edad_postulante)
                 # escape
                 if edad_postulante >= 18:
@@ -80,7 +86,7 @@ class App(customtkinter.CTk):
 
             #entrada genero (F-M-NB)
             while True:
-                genero = prompt(title="genero del postulante", prompt="ingrese su genero. femenino(F), Masculino(M), No Binario (NB)")
+                genero = prompt(title=title_prompt, prompt="ingrese su genero. femenino(F), Masculino(M), No Binario (NB)")
                 match genero:
                     case "F" | "M" | "NB":
                         break
@@ -89,7 +95,7 @@ class App(customtkinter.CTk):
 
             #entrada tecnologia de desarrollo (PYTHON - JS - ASP.NET)
             while True:
-                tecnologia_postulante = prompt(title="tecnologia del postulante", prompt="ingrese lenguaje de desarrollo: PHYTON - JS - ASP.NET")
+                tecnologia_postulante = prompt(title=title_prompt, prompt="ingrese lenguaje de desarrollo: PHYTON - JS - ASP.NET")
                 match tecnologia_postulante:
                     case "PHYTON" | "JS" | "ASP.NET":
                         break
@@ -97,7 +103,11 @@ class App(customtkinter.CTk):
 
             #entrada puesto (Jr - Ssr - Sr)
             while True:
+
                 puesto_postulante = prompt(title="puesto del postulante", prompt="seleccione su puesto Jr - Ssr - Sr")
+
+                puesto_postulante = prompt(title=title_prompt, prompt="seleccione su puesto Js - Ssr - Sr")
+
                 match puesto_postulante:
                     case "Jr" | "Ssr" | "Sr":
                         break
@@ -132,7 +142,11 @@ class App(customtkinter.CTk):
                 case "JS":
                     contador_tecnologia_js += 1
                 case "ASP.NET":
+
                     contador_tecnologia_net += 1
+
+        #fin de bucle
+
 
         #calculo de promedio de edades por genero
         if contador_edades_f != 0:
