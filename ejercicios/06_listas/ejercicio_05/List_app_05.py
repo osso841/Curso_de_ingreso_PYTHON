@@ -24,8 +24,13 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        suma_total = 0
+
+        for elemento in self.lista_datos:
+            suma_total += elemento
     
+        alert(title="sumatoria", message=suma_total)
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
