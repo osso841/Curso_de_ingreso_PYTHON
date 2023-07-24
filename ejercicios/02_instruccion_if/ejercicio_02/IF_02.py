@@ -41,10 +41,10 @@ class App(customtkinter.CTk):
         edad = self.txt_edad.get()
 
         #parseo de variable
-        edad_int = int(edad)
+        edad = int(edad)
 
         #determinar si es mayor de edad
-        if edad_int >= MAYOR:
+        if edad >= MAYOR:
             mensaje = "MAYOR"
         else:
             mensaje = "MENOR"

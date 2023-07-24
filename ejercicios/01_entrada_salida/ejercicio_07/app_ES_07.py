@@ -60,7 +60,7 @@ class App(customtkinter.CTk):
 
         #proceso
         suma = operador_1_int + operador_2_int
-        mensaje = "el resultado de la suma es: " + str(suma)
+        mensaje = f"el resultado de la suma es: {suma}"
 
         #salida
         alert(title="suma", message= mensaje)
@@ -76,7 +76,7 @@ class App(customtkinter.CTk):
 
         #proceso
         resta = operador_1_int - operador_2_int
-        mensaje = "el resultado de la resta es: " + str(resta)
+        mensaje = f"el resultado de la resta es: {resta}"
 
         #salida
         alert(title="resta", message=mensaje)
@@ -92,7 +92,7 @@ class App(customtkinter.CTk):
 
         #proceso
         multiplicar = operador_1_int * operador_2_int
-        mensaje = "el resultado de la multiplicacion es: " + str(multiplicar)
+        mensaje = "el resultado de la multiplicacion es: {0}",format(multiplicar)
 
         #salida 
         alert(title="multiplicación", message=mensaje)

@@ -38,7 +38,7 @@ class App(customtkinter.CTk):
         nombre = prompt(title="nombre", prompt="ingrese un nombre")
 
         #salida
-        self.txt_nombre.delete(first_index=0, last_index=100)
+        self.txt_nombre.delete(first_index=0, last_index="end")
         self.txt_nombre.insert(index=0, string=nombre)
         
     

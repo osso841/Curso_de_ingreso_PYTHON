@@ -51,7 +51,7 @@ class App(customtkinter.CTk):
 
         #proceso
         suma = operador_1_int + operador_2_int
-        mensaje = "el resultado de las sumas es: " + str(suma)
+        mensaje = f"el resultado de las sumas es: {suma}"
 
         #salida
         alert(title="resultado", message=mensaje)
