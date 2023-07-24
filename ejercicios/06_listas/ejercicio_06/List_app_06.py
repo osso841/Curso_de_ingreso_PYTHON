@@ -24,7 +24,16 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        suma_total = 0
+
+        for elemento in self.lista_datos:
+            suma_total += elemento
+
+        promedio = suma_total / len(self.lista_datos)
+
+        alert(title="promedio", message=promedio)
+
+        
     
 if __name__ == "__main__":
     app = App()

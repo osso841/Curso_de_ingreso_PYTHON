@@ -25,9 +25,6 @@ class App(customtkinter.CTk):
         
     
     def btn_validar_letra_on_click(self):
-        #declaración
-        letra_mayuscula = None
-        
         # entrada de dato y validación
         while True:
             #entrada
@@ -42,11 +39,12 @@ class App(customtkinter.CTk):
             
         # salida
         mensaje = "la letra seleccionada es {0}".format(letra_mayuscula)
-        #mensaje salida cancel
-        if letra_mayuscula == None:
-           mensaje = "se cancelo el ingreso"
 
-        alert(title="salida", message=mensaje)
+        #mensaje salida cancel
+        if letra_mayuscula != None:
+            alert(title="salida", message=mensaje)
+
+
             
 
             
