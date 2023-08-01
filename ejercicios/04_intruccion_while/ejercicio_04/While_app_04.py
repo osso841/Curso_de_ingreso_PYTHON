@@ -6,10 +6,10 @@ import customtkinter
 
 
 '''
-Enunciado:
-Al presionar el botón ‘Validar número’, mediante prompt solicitar al usuario que ingrese un número. 
-Se deberá validar que se encuentre entre 0 y 9 inclusive. En caso no coincidir con el rango, 
-volverlo a solicitar hasta que la condición se cumpla
+    Enunciado:
+    Al presionar el botón ‘Validar número’, mediante prompt solicitar al usuario que ingrese un número. 
+    Se deberá validar que se encuentre entre 0 y 9 inclusive. En caso no coincidir con el rango, 
+    volverlo a solicitar hasta que la condición se cumpla
 '''
 
 
@@ -25,34 +25,15 @@ class App(customtkinter.CTk):
         
     
     def btn_validar_numero_on_click(self):
-        #declaracion 
-        numero = None
+        
+        #entrada numero con validación
+        numero = prompt(title="numero", prompt="entrada numero")
+        while numero is None or not numero.isdigit() or (int(numero) < 0 or int(numero) > 9):
+            numero = prompt(title="numero", prompt="ingrese nuevamente el numero")
+        print(f"se ingreso el valor: {numero}")
 
-        while True:
-            #entrada
-            numero = prompt(title="validar numero", prompt="ingrese numero")
+        
 
-            # escape por boton cancel
-            if numero == None:
-                break
-
-            #parseo de variable
-            numero = int(numero)
-
-            #escape por coincidencia
-            if numero >= 0 and numero <= 9:
-                break
-            
-        #salida mensaje segun seleccion
-        if numero == None:
-            mensaje = "se cancelo la operacion" 
-        else:
-            mensaje = "se ingreso el numero: {0}".format(numero)
-
-        alert(title="valor de ingreso (1-9)", message=mensaje)
-
-
-    
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

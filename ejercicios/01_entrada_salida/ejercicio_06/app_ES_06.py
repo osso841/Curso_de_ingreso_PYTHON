@@ -48,7 +48,7 @@ class App(customtkinter.CTk):
         #parseo valores entrada
         operador_1_int = int(operador_1)
         operador_2_int = int(operador_2)
-
+        
         #proceso
         suma = operador_1_int + operador_2_int
         mensaje = f"el resultado de las sumas es: {suma}"

@@ -1,3 +1,4 @@
+from itertools import count
 import tkinter
 from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
@@ -26,13 +27,10 @@ class App(customtkinter.CTk):
         # for i in count():
 
         #entrada
-        for i in range(1000):
+        for i in count():
             ingreso = prompt(title="entrada numerica", prompt="ingrese un numero")
-            if ingreso == None:
-                break
-
             ingreso = int(ingreso)
-            
+
             if ingreso == 9:
                 break
 

@@ -31,37 +31,27 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-
-        #declaracion de variables y acumuladores
-        numero = None
-        suma_total = 0
-        multiplicacion_total = 1
-
-        #calculo con validacion de usuario
+        #declaracion de variables
+        acumulador_suma_positivos = 0
+        acumulador_producto_negativos = 1
+        
         while True:
-            # entrada
-            numero = prompt(title="numero entero", prompt="ingrese numero")
-
-            #escape de bucle
-            if numero == None:
+            numero = prompt(title="numero", prompt="ingrese numero")
+            if numero is None or numero == 0 :
                 break
 
-            numero = int(numero)
-
-            #operacion a realizar segun signo
-            if numero == 0:
-                break
-            elif numero > 0:
-                suma_total += numero
+            numero  = int(numero)
+            if numero > 0:
+                acumulador_suma_positivos += numero
             else:
-                multiplicacion_total *= numero
+                acumulador_producto_negativos *= numero
+        
+        self.txt_producto.delete(first_index=0, last_index="end")
+        self.txt_producto.insert(index=0, string=acumulador_producto_negativos)
+        self.txt_suma_acumulada.delete(first_index=0, last_index="end")
+        self.txt_suma_acumulada.insert(index=0, string=acumulador_suma_positivos)
+        
 
-        #salida por caja de texto
-        self.txt_suma_acumulada.delete(0, "end")
-        self.txt_suma_acumulada.insert(0, suma_total)
-
-        self.txt_producto.delete(0, "end")
-        self.txt_producto.insert(0, multiplicacion_total)
 
     
 if __name__ == "__main__":

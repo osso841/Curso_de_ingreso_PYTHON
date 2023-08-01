@@ -7,8 +7,8 @@ b. nombre y edad del candidato con menos votos
 c. el promedio de edades de los candidatos
 d. total de votos emitidos.
 Todos los datos se ingresan por prompt y los resultados por consola (print)
-
 '''
+
 import tkinter
 from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
@@ -49,20 +49,18 @@ class App(customtkinter.CTk):
             nombre = prompt(title="ingrese dato", prompt="nombre")
 
             #edad y validacion
-            while True:
+            edad = prompt(title="ingrese dato", prompt="edad")
+            while int(edad) < 25:
                 edad = prompt(title="ingrese dato", prompt="edad")
-                edad = int(edad)
-                if edad >= 25:
-                    break
                 alert(title="dato incorrecto", message="edad fuera del rango de valores")
+            edad = int(edad)
 
             #cantidad de votos y validacion
-            while True:
+            cantidad_votos_candidato = prompt(title="ingrese datos", prompt="cantidad de votos")
+            while int(cantidad_votos_candidato) < 0:
                 cantidad_votos_candidato = prompt(title="ingrese datos", prompt="cantidad de votos")
-                cantidad_votos_candidato = int(cantidad_votos_candidato)
-                if cantidad_votos_candidato >= 0:
-                    break
                 alert(title="error en carga", message="se ingreso un numero negativo")
+            cantidad_votos_candidato = int(cantidad_votos_candidato)
 
             #candidato mas votado
             if primer_candidato or cantidad_votos_candidato > votos_maximos:

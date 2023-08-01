@@ -21,7 +21,7 @@ class App(customtkinter.CTk):
         
         self.btn_mostrar_iteracion = customtkinter.CTkButton(master=self, text="Mostrar iteración", command=self.btn_mostrar_iteracion_on_click)
         self.btn_mostrar_iteracion.grid(row=2, pady=20, columnspan=2, sticky="nsew")
-        
+    
     
     def btn_mostrar_iteracion_on_click(self):
         #declaracion de variables

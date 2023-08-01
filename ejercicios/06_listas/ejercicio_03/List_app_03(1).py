@@ -21,18 +21,18 @@ class App(customtkinter.CTk):
         self.btn_calcular.grid(row=2, pady=10, columnspan=2, sticky="nsew")
 
         self.lista_datos = [1,80,5,0,15,-5,1,79]
-        #                   0,1, 2,3,4 ,5, 6 ,7
+
 
     def btn_calcular_on_click(self):
-        valor_maximo = None
-        carga_primer_valor = True
-        # i : 0, 1, 2, 3, 4, 5, 6, 7
-        for i in range(0, len(self.lista_datos), 1):
-            if carga_primer_valor or valor_maximo < self.lista_datos[i]:
-                valor_maximo = self.lista_datos[i]
-                carga_primer_valor = False
+        bandera_primer_elemento = True
+        numero_maximo = None
+        # elemento 1, 80 , 5, 0, 15, -5, 1, 79
+        for elemento in self.lista_datos:
+            if bandera_primer_elemento or elemento > numero_maximo:
+                numero_maximo = elemento
+                bandera_primer_elemento = False
 
-        alert(title="numero maximo", message= valor_maximo)
+        alert(title="numero maximo", message="el numero maximo es: {0}".format(numero_maximo))
 
 if __name__ == "__main__":
     app = App()

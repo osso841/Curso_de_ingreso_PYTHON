@@ -1,3 +1,4 @@
+from itertools import count
 import tkinter
 from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
@@ -22,7 +23,7 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        for i in range(1000):
+        for i in count():
             continuar = question(title="proceso", message="desea continuar?")
             if continuar is False:
                 break

@@ -43,7 +43,7 @@ class App(customtkinter.CTk):
             case "Ushuaia":
                 mensaje = "Sur"
 
-        msg_salida = "{} se encuentra al {} de argentina".format(destino, mensaje)
+        msg_salida = "{0} se encuentra al {1} de argentina".format(destino, mensaje)
         
         #salida
         alert(title=destino, message=msg_salida)

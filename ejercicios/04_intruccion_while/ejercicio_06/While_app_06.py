@@ -6,10 +6,9 @@ import customtkinter
 
 '''
 Enunciado:
-Al presionar el botón ‘Comenzar ingreso’, solicitar 5 números mediante prompt. 
+Al presionar el botón Comenzar ingreso, solicitar 5 números mediante prompt. 
 Calcular la suma acumulada y el promedio de los números ingresados. 
 Luego informar los resultados en las cajas de texto txt_suma_acumulada y txt_promedio
-
 '''
 
 class App(customtkinter.CTk):
@@ -31,43 +30,32 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        # declaracion constantes
-        CANTIDAD_NUMEROS =  5
+        #declaracion de constantes
+        ENTRADA_DE_NUMEROS = 5
+        contador_numeros = 0
+        acumulador_suma = 0
 
-        #declaracion de variables
-        contador = 0
-        suma_acumulada = 0
-        numero = None
-
-        # entrada de datos
-        while True:
-            #entrada
-            numero = prompt(title="ingrese numero", prompt="numero")
-            # escape por boton cancel
-            if numero == None:
-                break
-            # parseo de variable
+        while contador_numeros < ENTRADA_DE_NUMEROS:
+            #entrada con validacion
+            numero = prompt(title="entrada", prompt="ingrese un numero: ")
+            while numero is None or numero.isdigit():
+                numero = prompt(title="entrada", prompt="ingrese nuevamente un numero")
             numero = int(numero)
 
-            #suma de los valores ingresado
-            suma_acumulada += numero
+            #acumulador y contador
+            acumulador_suma += numero
+            contador_numeros += 1
+
+            promedio = acumulador_suma / contador_numeros
+
+            self.txt_suma_acumulada.delete(first_index=0, last_index="end")
+            self.txt_suma_acumulada.insert(index=0, string=acumulador_suma)
+            self.txt_promedio.delete(first_index=0, last_index="end")
+            self.txt_promedio.insert(index=0, string=promedio)
+
             
-            #escape por cantidad maxima
-            contador += 1
-            if contador == CANTIDAD_NUMEROS:
-                break
 
-        if numero != None:
-            #calculo promedio total
-            promedio_total = suma_acumulada / CANTIDAD_NUMEROS
 
-            #salida promedio
-            self.txt_promedio.delete(0, 'end')
-            self.txt_promedio.insert(0, promedio_total)
-
-            #salida suma total
-            self.txt_suma_acumulada.delete(0, 'end')
-            self.txt_suma_acumulada.insert(0, suma_acumulada)
 
     
 if __name__ == "__main__":

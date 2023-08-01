@@ -29,11 +29,11 @@ class App(customtkinter.CTk):
 
         #entrada contraseña con validacion
         contraseña = prompt(title="entrada", prompt="ingrese contraseña")
-        while contraseña != clave:
+        while contraseña != clave and contraseña != None:
             contraseña = prompt(title="entrada", prompt="ingrese contraseña")
 
-
-        alert(title="ingreso", message="iniciando sesión")
+        if contraseña is not None:
+            alert(title="ingreso", message="iniciando sesión")
     
 if __name__ == "__main__":
     app = App()

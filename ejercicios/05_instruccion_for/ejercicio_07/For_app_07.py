@@ -23,13 +23,17 @@ class App(customtkinter.CTk):
 
     def btn_mostrar_on_click(self):
         contador = 0
+        msg_numeros_divisibles = ""
+
         numero = prompt(title="Entrada", prompt="introduzca un numero")
         numero = int(numero)
         for i in range(1, numero + 1, 1):
             if numero % i == 0:
                 contador += 1
+                msg_numeros_divisibles += str(i) + " "
 
-        mensaje = "el numero {0} es divisible por {1} numeros".format(numero, contador)
+
+        mensaje = "el numero {0} es divisible por {1} numeros\nes divisible por:\n{2}".format(numero, contador, msg_numeros_divisibles)
 
         alert(title="calculo divisores", message=mensaje)
 

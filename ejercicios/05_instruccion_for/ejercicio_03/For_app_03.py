@@ -33,7 +33,7 @@ class App(customtkinter.CTk):
         cantidad_repeticiones = int(cantidad_repeticiones)
 
         for i in range(0, cantidad_repeticiones, 1):
-            alert(title="ej3", message="hola mundo")
+            alert(title="ej3", message="Hola UTN FRA")
 
         
         

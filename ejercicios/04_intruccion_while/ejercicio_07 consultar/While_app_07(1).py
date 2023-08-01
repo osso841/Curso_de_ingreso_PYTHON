@@ -40,22 +40,12 @@ class App(customtkinter.CTk):
             #entrada de numero
             numero = prompt(title="entrada", prompt="ingrese numero")
 
-            #escape por boton cancel
-            if numero is None:
-                break
-
-            #verificar si el numero que ingresa es un valor numerico aceptado
-            if not numero.isdigit():
+            while numero is None or not numero.isdigit():
                 alert(title="error", message="no se ha ingresado un numero, vuelva a intentarlo")
-                continue
-
-            #parseo de variable
             numero = int(numero)
 
             #suma de numeros ingresados
             suma_numeros += numero
-
-            #contador para el promedio
             contador += 1
 
         

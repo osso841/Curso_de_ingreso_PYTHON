@@ -1,25 +1,24 @@
 '''
-UTN Software Factory está en la búsqueda de programadores para incorporar a su equipo de 
-trabajo. En las próximas semanas se realizará un exhaustivo proceso de selección. Para ello se 
-ingresarán los siguientes datos de los 10 postulantes para luego establecer distintas métricas 
-necesarias para tomar decisiones a la hora de la selección:
+    UTN Software Factory está en la búsqueda de programadores para incorporar a su equipo de 
+    trabajo. En las próximas semanas se realizará un exhaustivo proceso de selección. Para ello se 
+    ingresarán los siguientes datos de los 10 postulantes para luego establecer distintas métricas 
+    necesarias para tomar decisiones a la hora de la selección:
 
-Nombre
-Edad (mayor de edad)
-Género (F-M-NB)
-Tecnología (PYTHON - JS - ASP.NET)
-Puesto (Jr - Ssr - Sr)
+    Nombre
+    Edad (mayor de edad)
+    Género (F-M-NB)
+    Tecnología (PYTHON - JS - ASP.NET)
+    Puesto (Jr - Ssr - Sr)
 
-Informar por pantalla:
-a. Cantidad de postulantes de genero no binario (NB) que programan en ASP.NET o JS 
-cuya edad este entre 25 y 40, que se hayan postulado para un puesto Ssr.
-b. Nombre del postulante Jr con menor edad.
-c. Promedio de edades por género.
-d. Tecnologia con mas postulantes (solo hay una).
-e. Porcentaje de postulantes de cada genero.
+    Informar por pantalla:
+    a. Cantidad de postulantes de genero no binario (NB) que programan en ASP.NET o JS 
+    cuya edad este entre 25 y 40, que se hayan postulado para un puesto Ssr.
+    b. Nombre del postulante Jr con menor edad.
+    c. Promedio de edades por género.
+    d. Tecnologia con mas postulantes (solo hay una).
+    e. Porcentaje de postulantes de cada genero.
 
-Todos los datos se ingresan por prompt y los resultados se muestran por consola (print)
-
+    Todos los datos se ingresan por prompt y los resultados se muestran por consola (print)
 '''
 import tkinter
 from tkinter.messagebox import showinfo as alert
@@ -42,8 +41,6 @@ class App(customtkinter.CTk):
 
     def btn_validar_on_click(self):
         # declaracion de constantes
-
-        CANTIDAD_DE_POSTULANTES = 4
 
         CANTIDAD_DE_POSTULANTES = 2
 
@@ -68,54 +65,35 @@ class App(customtkinter.CTk):
 
         #calculo general de postulantes
         for i in range(1, CANTIDAD_DE_POSTULANTES + 1, 1):
-            #mensaje prompt
-            title_prompt: "dato postulante {0} de {1}".format(i, CANTIDAD_DE_POSTULANTES)
 
             #entrada nombre 
-            nombre_postulante = prompt(title=title_prompt, prompt="ingrese nombre:")
+            nombre_postulante = prompt(title="dato postulante", prompt="ingrese nombre:")
 
             #entrada edad (mayor de edad) y validacion
-            while True:
-                edad_postulante = prompt(title=title_prompt, prompt="ingrese edad:")
-                edad_postulante = int(edad_postulante)
-                # escape
-                if edad_postulante >= 18:
-                    break
-                alert(title="dato invalido", message="dato invalido, ingresar nuevamente")
+            edad_postulante = prompt(title="dato postulante", prompt="ingrese edad:")
+            while int(edad_postulante) < 18:
+                edad_postulante = prompt(title="dato postulante", prompt="Dato invalido, ingresar nuevamente la edad:")
+            edad_postulante = int(edad_postulante)
 
 
             #entrada genero (F-M-NB)
-            while True:
-                genero = prompt(title=title_prompt, prompt="ingrese su genero. femenino(F), Masculino(M), No Binario (NB)")
-                match genero:
-                    case "F" | "M" | "NB":
-                        break
-
+            genero = prompt(title="dato postulante", prompt="ingrese su genero. femenino(F), Masculino(M), No Binario (NB)")
+            while not(genero == "F" or genero == "M" or genero == "NB"):
+                genero = prompt(title="dato postulante", prompt="ingrese nuevamente su genero. femenino(F), Masculino(M), No Binario (NB)")
 
 
             #entrada tecnologia de desarrollo (PYTHON - JS - ASP.NET)
-            while True:
-                tecnologia_postulante = prompt(title=title_prompt, prompt="ingrese lenguaje de desarrollo: PHYTON - JS - ASP.NET")
-                match tecnologia_postulante:
-                    case "PHYTON" | "JS" | "ASP.NET":
-                        break
+            tecnologia_postulante = prompt(title="dato postulante", prompt="ingrese lenguaje de desarrollo: PYTHON - JS - ASP.NET")
+            while not(tecnologia_postulante == "PYTHON" or tecnologia_postulante == "JS" or tecnologia_postulante == "ASP.NET"):
+                tecnologia_postulante = prompt(title="dato postulante", prompt="ingrese nuevamente el lenguaje de desarrollo: PYTHON - JS - ASP.NET")
+  
                 
-
             #entrada puesto (Jr - Ssr - Sr)
-            while True:
+            puesto_postulante = prompt(title="puesto del postulante", prompt="seleccione su puesto Jr - Ssr - Sr")
+            while not(puesto_postulante == "Jr" or puesto_postulante == "Ssr" or puesto_postulante == "Sr"):
+                puesto_postulante = prompt(title="puesto del postulante", prompt="seleccione nuevamente su puesto Jr - Ssr - Sr")
 
-                puesto_postulante = prompt(title="puesto del postulante", prompt="seleccione su puesto Jr - Ssr - Sr")
 
-                puesto_postulante = prompt(title=title_prompt, prompt="seleccione su puesto Js - Ssr - Sr")
-
-                match puesto_postulante:
-                    case "Jr" | "Ssr" | "Sr":
-                        break
-
-            # Cantidad de postulantes de genero no binario (NB) que programan en ASP.NET o JS cuya edad este entre 25 y 40, que se hayan postulado para un puesto Ssr.
-            postulante_nb = genero == "NB" and tecnologia_postulante == "ASP.NET" and edad_postulante >= 25 and edad_postulante <= 40 and puesto_postulante =="Ssr"
-            if postulante_nb:
-                contador_postulante_nb += 1
 
             # Nombre del postulante Jr con menor edad.
             if primer_postulante_js or edad_postulante < edad_minima_postulante_js and puesto_postulante == "Jr":
@@ -134,15 +112,17 @@ class App(customtkinter.CTk):
                 case "NB":
                     acumulador_edad_nb += edad_postulante
                     contador_edades_nb += 1
+                    # Cantidad de postulantes de genero no binario (NB) que programan en ASP.NET o JS cuya edad este entre 25 y 40, que se hayan postulado para un puesto Ssr.
+                    if (tecnologia_postulante == "ASP.NET" or tecnologia_postulante == "JS") and (edad_postulante >= 25 and edad_postulante <= 40) and puesto_postulante =="Ssr":
+                        contador_postulante_nb += 1
 
             # Tecnologia con mas postulantes.
             match tecnologia_postulante:
-                case "PHYTON":
+                case "PYTHON":
                     contador_tecnologia_py += 1
                 case "JS":
                     contador_tecnologia_js += 1
                 case "ASP.NET":
-
                     contador_tecnologia_net += 1
 
         #fin de bucle
@@ -165,19 +145,14 @@ class App(customtkinter.CTk):
             promedio_edades_nb = "no hay postulantes no binarios"
 
         # calculo tecnologia con mas postulantes
-        if contador_tecnologia_py >= contador_tecnologia_js:
-            if contador_tecnologia_py > contador_tecnologia_net:
-                tecnologia_con_mas_postulantes = "PYTHON"
-            elif contador_tecnologia_py < contador_tecnologia_net:
-                tecnologia_con_mas_postulantes = "ASP.NET"
-            else:
-                tecnologia_con_mas_postulantes = "misma cantidad de postulantes para todas las tecnologias"
-        elif contador_tecnologia_js > contador_tecnologia_net:
+        if contador_tecnologia_js > contador_tecnologia_net and contador_tecnologia_js > contador_tecnologia_py:
             tecnologia_con_mas_postulantes = "JS"
-        elif contador_tecnologia_js < contador_tecnologia_net:
+        elif contador_tecnologia_py > contador_tecnologia_js and contador_tecnologia_py > contador_tecnologia_net:
+            tecnologia_con_mas_postulantes = "PYTHON"
+        elif contador_tecnologia_net > contador_tecnologia_js and contador_tecnologia_net > contador_tecnologia_py:
             tecnologia_con_mas_postulantes = "ASP.NET"
         else:
-            tecnologia_con_mas_postulantes = "ASP.NET Y JS tienes la mayor cantidad de postulantes"
+            tecnologia_con_mas_postulantes = "no hay una tecnologia con mas postulantes"
 
         # Porcentaje de postulantes de cada genero.
 
@@ -195,6 +170,26 @@ class App(customtkinter.CTk):
         
         
        
+
+
+
+
+
+        lista = [3, 4, 7, 8, 9]
+
+        for elemento in lista:
+            # elemento te devuelve la variable dentro de la lista
+            pass
+
+
+        for i in range(0, len(lista), 1):
+            # i es la posicion de cada elemento
+            pass
+
+
+
+
+
 
 
 

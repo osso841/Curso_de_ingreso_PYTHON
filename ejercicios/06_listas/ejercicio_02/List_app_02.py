@@ -27,10 +27,15 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        for elemento in self.lista_datos:
+            alert(title="datos cargados", message=elemento)
     
     def btn_cargar_on_click(self):
-        pass
+        for i in range(0, 3, 1):
+            numero = prompt(title="datos", prompt="ingrese un numero")
+            numero = int(numero)
+            self.lista_datos.append(numero)
+
 
         
 

@@ -23,10 +23,9 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        for i in range(0, 5, 1):
-            alert(title="bucle for",message="hola mundo") 
-       
-            
+        for i in range(1, 6, 1):
+            alert(title="bucle for",message=i)
+
 
 if __name__ == "__main__":
     app = App()

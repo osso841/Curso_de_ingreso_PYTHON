@@ -46,7 +46,7 @@ class App(customtkinter.CTk):
                 mensaje = "Falta para el invierno.."
             case "Julio" | "Agosto":
                 mensaje = "¡Abrígate que hace frío!"
-            case "Septiembre" | "Octubre" | "Noviembre" | "Diciembre":
+            case _:
                 mensaje = "Ya pasamos frío, ahora calor!"
     
         alert(title="mensaje", message=mensaje)
